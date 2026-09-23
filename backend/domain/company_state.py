@@ -42,3 +42,9 @@ class CompanyState:
     receivables: float
 
     payables: float
+
+    brand_score: float
+
+    innovation_score: float
+
+    efficiency_score: float
