@@ -442,3 +442,32 @@ FinancialResult
 
 - equity
 ``
+
+# Liquidity Management
+
+SIMRT'de şirketlerin minimum bir acil durum nakdi taşımaları zorunludur.
+
+---
+
+## Minimum Cash Rule
+
+Her şirket dönem sonunda minimum:
+
+```text
+250.000 TL
+```
+# Taxation
+
+SIMRT içerisinde vergi oranı sistem parametresi olarak tanımlanır.
+
+Bu oran admin tarafından değiştirilebilir.
+
+---
+
+## Current Version
+
+İlk sürümde:
+
+```text
+Tax Rate = 0%
+``
