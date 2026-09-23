@@ -124,3 +124,4 @@ TOPSIS yöntemi ile takım sıralamasını oluşturur.
 
 - Yıllık sıralama
 - Genel sıralama
+credit_terms = Accounts Receivable Days (AR Days)
