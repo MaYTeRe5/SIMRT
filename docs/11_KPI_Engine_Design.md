@@ -1,121 +1,6 @@
-# SIMRT KPI Engine Design
+# Official Ranking KPIs
 
-## Purpose
-
-KPI Engine şirket performansını ölçmek için kullanılan göstergeleri üretir.
-
-Bu göstergeler:
-
-- Şirket analizi
-- Takım performansı
-- Ranking Engine
-
-tarafından kullanılır.
-
----
-
-# Engine Position
-
-```text
-Market Engine
-        ↓
-
-Algorithm Engine
-        ↓
-
-Financial Engine
-        ↓
-
-KPI Engine
-        ↓
-
-Ranking Engine
-```
-
----
-
-# KPI Categories
-
-SIMRT içerisinde KPI'lar beş ana gruba ayrılır.
-
-```text
-Growth
-
-Profitability
-
-Market
-
-Financial Health
-
-Operations
-```
-
----
-
-# Growth KPIs
-
-## Revenue Growth
-
-```text
-Revenue Growth
-
-=
-
-(Current Revenue
--
-Previous Revenue)
-
-/
-Previous Revenue
-```
-
-Amaç:
-
-Şirketin büyüme performansını ölçmek.
-
----
-
-# Profitability KPIs
-
-## Gross Margin
-
-```text
-Gross Margin
-
-=
-
-Gross Profit
-/
-Revenue
-```
-
----
-
-## EBIT Margin
-
-```text
-EBIT Margin
-
-=
-
-EBIT
-/
-Revenue
-```
-
----
-
-## Net Profit Margin
-
-```text
-Net Profit
-/
-Revenue
-```
-
----
-
-# Market KPIs
+SIMRT içerisinde resmi takım sıralaması aşağıdaki KPI'lar kullanılarak hesaplanır.
 
 ## Market Share
 
@@ -129,191 +14,96 @@ Final Demand
 Total Market Volume
 ```
 
+Amaç:
+
+Pazardaki rekabet başarısını ölçmek.
+
 ---
 
-## Demand Growth
+## EBITDA
 
 ```text
-Current Demand
--
-Previous Demand
+EBITDA
+
+=
+
+EBIT
++
+Depreciation
 ```
 
 Amaç:
 
-Pazardaki konum değişimini ölçmek.
+Şirketin operasyonel karlılığını ölçmek.
 
 ---
 
-# Financial Health KPIs
-
-## Cash Position
+## ROE
 
 ```text
-Ending Cash
-```
+ROE
 
----
+=
 
-## Debt Ratio
-
-```text
-Debt
+Net Profit
 /
 Equity
 ```
 
----
+Amaç:
 
-## Equity
-
-```text
-Ending Equity
-```
+Özkaynağın ne kadar verimli kullanıldığını ölçmek.
 
 ---
 
-# Operations KPIs
-
-## Capacity Utilization
+## Debt / Asset Ratio
 
 ```text
-Sales Units
+Debt
 /
-Capacity
+Total Assets
 ```
+
+Amaç:
+
+Finansal risk seviyesini ölçmek.
+
+Bu KPI bir Cost KPI'dır.
+
+Düşük olması tercih edilir.
 
 ---
 
-## Inventory Turnover
+## Inventory Turn
 
 ```text
+Inventory Turn
+
+=
+
 COGS
 /
 Average Inventory
 ```
 
+Amaç:
+
+Stok yönetim performansını ölçmek.
+
 ---
 
-## Unit Cost
+# Ranking KPI Weights
+
+Tüm KPI'lar eşit ağırlıklıdır.
 
 ```text
-Unit Cost
+Market Share      20%
+
+EBITDA            20%
+
+ROE               20%
+
+Debt / Asset      20%
+
+Inventory Turn    20%
 ```
-
-Düşük olması tercih edilir.
-
----
-
-# Strategic KPIs
-
-## Brand Strength
-
-Kaynak:
-
-```text
-Brand Score
-```
-
----
-
-## Innovation Strength
-
-Kaynak:
-
-```text
-Innovation Score
-```
-
----
-
-## Efficiency Strength
-
-Kaynak:
-
-```text
-Efficiency Score
-```
-
----
-
-# KPI Classification
-
-## Benefit KPIs
-
-Yüksek olması tercih edilir.
-
-Örnek:
-
-- Revenue Growth
-- EBIT Margin
-- Net Profit Margin
-- Market Share
-- Cash Position
-- Equity
-- Brand Strength
-- Innovation Strength
-
----
-
-## Cost KPIs
-
-Düşük olması tercih edilir.
-
-Örnek:
-
-- Debt Ratio
-- Unit Cost
-
----
-
-# Annual KPI Snapshot
-
-Her yıl sonunda her şirket için KPI seti oluşturulur.
-
-Örnek:
-
-```text
-Company A
-
-Revenue Growth      12%
-
-EBIT Margin         18%
-
-Market Share        27%
-
-Debt Ratio          0.45
-
-Capacity Utilization 91%
-```
-
----
-
-# Output Object
-
-KPIResult
-
-İçerik:
-
-- company_id
-- year_no
-
-- revenue_growth
-
-- gross_margin
-- ebit_margin
-- net_profit_margin
-
-- market_share
-
-- cash_position
-- debt_ratio
-- equity
-
-- capacity_utilization
-- inventory_turnover
-- unit_cost
-
-- brand_strength
-- innovation_strength
-- efficiency_strength
