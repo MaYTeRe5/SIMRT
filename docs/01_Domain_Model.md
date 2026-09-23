@@ -124,3 +124,34 @@ Bir yıl sonundaki şirket durumu.
 - Kapasite
 - Stok
 - Pazar payı
+
+# Company State Lifecycle
+
+Starting Point
+    ↓
+
+Company State Year 0
+    ↓
+
+Decision
+    ↓
+
+TOPSIS
+    ↓
+
+Algorithm
+    ↓
+
+Company State Year 1
+    ↓
+
+Decision
+    ↓
+
+TOPSIS
+    ↓
+
+Algorithm
+    ↓
+
+Company State Year 2
