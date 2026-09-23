@@ -422,3 +422,16 @@ AlgorithmResult
 - payables
 
 - inventory_value
+
+# Capacity Investment
+
+Capacity Investment üretim kapasitesini artırır.
+
+---
+
+## Investment Rule
+
+Her:
+
+```text
+1.000.000
