@@ -9,8 +9,14 @@ class MarketResult:
 
     topsis_score: float
 
-    demand_units: int
+    brand_loyalty_demand: int
 
-    sales_forecast: int
+    topsis_demand: int
+
+    initial_demand: int
+
+    redistributed_demand: int
+
+    final_demand: int
 
     market_share: float
