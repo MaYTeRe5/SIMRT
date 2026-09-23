@@ -2,11 +2,15 @@
 
 ## Purpose
 
-Market Engine, müşteri satın alma davranışını simüle eder.
+Market Engine müşteri satın alma davranışını simüle eder.
 
 Takımların verdiği kararlar ile senaryo koşullarını değerlendirir ve pazar talebini şirketlere dağıtır.
 
 Market Engine'in temel hesaplama yöntemi TOPSIS'tir.
+
+Ancak talebin tamamı TOPSIS ile dağıtılmaz.
+
+Talep önce Brand Loyalty mekanizmasından geçirilir, kalan talep TOPSIS ile dağıtılır.
 
 ---
 
@@ -36,7 +40,9 @@ Financial Results
 
 Market Engine aşağıdaki senaryo bilgilerini kullanır:
 
-- Market Volume
+- Market Volume Growth
+- Brand Loyalty Rate
+- Brand Loyalty Price Limit
 - Segment Distribution
 - Economic Conditions
 
@@ -64,6 +70,8 @@ Her segment için kriter ağırlıkları tanımlanır.
 - Brand Weight
 - Innovation Weight
 - Credit Terms Weight
+
+Bu ağırlıklar senaryo yılına göre değişebilir.
 
 ---
 
@@ -104,16 +112,243 @@ Company State
 Decision
     ↓
 
-TOPSIS Matrix
+Market Volume Update
     ↓
 
-TOPSIS Score
+Brand Loyalty Allocation
     ↓
 
-Demand Allocation
+Brand Loyalty Price Check
+    ↓
+
+TOPSIS Pool Calculation
+    ↓
+
+Segment Allocation
+    ↓
+
+TOPSIS Calculation
+    ↓
+
+Initial Demand
+    ↓
+
+Capacity Check
+    ↓
+
+Demand Redistribution
+    ↓
+
+Final Demand
     ↓
 
 Market Share
+```
+
+---
+
+# Market Volume Update
+
+Yılın toplam pazar hacmi güncellenir.
+
+```text
+Current Market Volume
+
+=
+
+Previous Market Volume
+×
+(1 + Growth Rate)
+```
+
+Growth Rate değeri Variable List'ten alınır.
+
+---
+
+# Brand Loyalty Allocation
+
+Her senaryo yılı için bir Brand Loyalty Rate tanımlanır.
+
+Örnek:
+
+```text
+10%
+20%
+35%
+```
+
+Brand Loyalty Demand aşağıdaki şekilde hesaplanır:
+
+```text
+Brand Loyalty Demand
+
+=
+
+Current Market Volume
+×
+Brand Loyalty Rate
+```
+
+---
+
+# Brand Loyalty Distribution
+
+Brand Loyalty Demand tüm aktif şirketlere eşit dağıtılır.
+
+Örnek:
+
+```text
+Brand Loyalty Demand
+
+200.000
+```
+
+4 şirket varsa:
+
+```text
+Company A = 50.000
+
+Company B = 50.000
+
+Company C = 50.000
+
+Company D = 50.000
+```
+
+---
+
+# Brand Loyalty Price Rule
+
+Marka bağlılığından yararlanabilmek için şirket fiyatı belirlenen eşik değeri aşmamalıdır.
+
+Senaryo tarafından belirlenir:
+
+```text
+Brand Loyalty Price Limit
+```
+
+Örnek:
+
+```text
+175%
+```
+
+Pazar ortalama fiyatı:
+
+```text
+100
+```
+
+ise:
+
+```text
+Maximum Allowed Price
+
+=
+
+100 × 1.75
+
+=
+
+175
+```
+
+olur.
+
+---
+
+# Price Violation
+
+Bir şirket:
+
+```text
+Price > Maximum Allowed Price
+```
+
+ise:
+
+```text
+Brand Loyalty Demand = 0
+```
+
+olur.
+
+Şirket ilgili yıl için marka bağlılığı avantajını kaybeder.
+
+---
+
+# Lost Loyalty Demand Rule
+
+Kaybedilen Brand Loyalty Demand diğer şirketlere dağıtılmaz.
+
+Kaybedilen miktar doğrudan TOPSIS havuzuna aktarılır.
+
+Örnek:
+
+```text
+Brand Loyalty Pool
+
+200.000
+```
+
+Company A hakkını kaybeder:
+
+```text
+50.000
+```
+
+adet.
+
+Yeni durum:
+
+```text
+Distributed Brand Loyalty
+
+150.000
+```
+
+TOPSIS Pool:
+
+```text
++50.000
+```
+
+ek talep alır.
+
+---
+
+# TOPSIS Pool Calculation
+
+TOPSIS ile dağıtılacak talep:
+
+```text
+TOPSIS Pool
+
+=
+
+Current Market Volume
+-
+Distributed Brand Loyalty Demand
+```
+
+şeklinde hesaplanır.
+
+---
+
+# Segment Allocation
+
+TOPSIS Pool segmentlere ayrılır.
+
+Segment oranları Variable List'ten alınır.
+
+Örnek:
+
+```text
+Value      40%
+
+Balanced   35%
+
+Premium    25%
 ```
 
 ---
@@ -208,104 +443,134 @@ Generate Segment Score
 
 ---
 
-# Demand Allocation
+# Initial Demand
 
-Her segment için TOPSIS skorları hesaplanır.
+Her segment için oluşan TOPSIS talebi hesaplanır.
 
----
-
-## Segment Demand
+İlk talep:
 
 ```text
-Segment Demand
+Initial Demand
 
 =
-Market Volume
-×
-Segment Share
+
+Brand Loyalty Demand
++
+TOPSIS Demand
 ```
 
 ---
 
-## Company Demand Share
+# Capacity Check
+
+Şirketin satışa sunabileceği ürün miktarı hesaplanır.
 
 ```text
-Company Demand Share
+Available Product
 
 =
-Company Score
+
+Beginning Inventory
++
+Production
+```
+
+---
+
+# Unmet Demand
+
+Eğer:
+
+```text
+Initial Demand
+>
+Available Product
+```
+
+ise:
+
+```text
+Unmet Demand
+```
+
+oluşur.
+
+---
+
+# Demand Redistribution
+
+Karşılanamayan talep yeniden dağıtılır.
+
+Yalnızca satılabilir ürünü kalan şirketler yeniden dağıtıma katılır.
+
+---
+
+# Redistribution Score
+
+Yeniden dağıtım puanı:
+
+```text
+Value TOPSIS Score
++
+Balanced TOPSIS Score
++
+Premium TOPSIS Score
+```
+
+toplamı olarak hesaplanır.
+
+Bu puan kullanılarak:
+
+```text
+Unmet Demand Pool
+```
+
+yeniden dağıtılır.
+
+---
+
+# Final Demand
+
+```text
+Final Demand
+
+=
+
+Initial Demand
++
+Redistributed Demand
+```
+
+---
+
+# Market Share
+
+Market Share aşağıdaki şekilde hesaplanır:
+
+```text
+Market Share
+
+=
+
+Final Demand
 /
-Total Segment Score
-```
-
----
-
-## Company Demand
-
-```text
-Company Demand
-
-=
-Segment Demand
-×
-Company Demand Share
-```
-
----
-
-# Total Demand
-
-Her segmentten gelen talepler toplanır.
-
-```text
-Total Demand
-
-=
-Value Demand
-+
-Balanced Demand
-+
-Premium Demand
+Total Market Volume
 ```
 
 ---
 
 # Outputs
 
-## Demand Units
+## MarketResult
 
-Şirket bazında oluşan talep.
-
----
-
-## Market Share
-
-Şirket bazında oluşan pazar payı.
-
----
-
-## Segment Results
-
-Her segment için:
-
-- Demand
-- Share
-- TOPSIS Score
-
----
-
-# Output Object
-
-Market Engine çıktısı:
-
-```text
-MarketResult
-```
-
-İçerik:
+Her şirket için aşağıdaki bilgiler üretilir:
 
 - company_id
 - year_no
-- demand_units
+- topsis_score
+- brand_loyalty_demand
+- topsis_demand
+- initial_demand
+- redistributed_demand
+- final_demand
 - market_share
-- segment_scores
