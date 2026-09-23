@@ -435,3 +435,21 @@ Her:
 
 ```text
 1.000.000
+
+# R&D Classification
+
+SIMRT içerisinde iki farklı R&D türü bulunur.
+
+```
+
+## Product R&D
+
+Amaç:
+
+Ürün algısını geliştirmek.
+
+Muhasebe Sınıfı:
+
+```text
+OPEX
+```
