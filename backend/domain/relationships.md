@@ -13,13 +13,19 @@ Simulation
 Relationships
 
 Team
-→ assigned Company
+-> assigned Company
+
+Team
+-> contains Players
+
+Team
+-> may have an Advisor
 
 Company
-→ submits Decisions
+-> submits Decisions
 
 Scenario
-→ affects Companies
+-> affects Companies
 
 Decision
-→ generates Results
+-> generates Results
