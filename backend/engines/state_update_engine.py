@@ -1,0 +1,51 @@
+from domain.decision import Decision
+
+
+class StateUpdateEngine:
+
+    def calculate_weighted_effect(
+        self,
+        investments: list[float]
+    ) -> float:
+        """
+        investments sıralaması:
+        [Y1, Y2, Y3, ... Yn]
+
+        En son eleman güncel yıl yatırımıdır.
+        """
+
+        effect = 0.0
+
+        reversed_investments = list(reversed(investments))
+
+        for age, investment in enumerate(reversed_investments, start=1):
+            effect += investment / age
+
+        return effect
+
+    def calculate_brand_score(
+        self,
+        marketing_history: list[float]
+    ) -> float:
+
+        return self.calculate_weighted_effect(
+            marketing_history
+        )
+
+    def calculate_innovation_score(
+        self,
+        product_rd_history: list[float]
+    ) -> float:
+
+        return self.calculate_weighted_effect(
+            product_rd_history
+        )
+
+    def calculate_efficiency_score(
+        self,
+        process_rd_history: list[float]
+    ) -> float:
+
+        return self.calculate_weighted_effect(
+            process_rd_history
+        )
