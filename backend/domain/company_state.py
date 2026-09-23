@@ -21,7 +21,17 @@ class CompanyState:
 
     utilization_rate: float
 
-    # Finance
+    # Income Statement
+
+    revenue: float
+
+    gross_profit: float
+
+    ebit: float
+
+    net_profit: float
+
+    # Balance Sheet
 
     cash: float
 
