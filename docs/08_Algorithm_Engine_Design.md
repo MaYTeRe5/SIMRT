@@ -453,3 +453,25 @@ Muhasebe Sınıfı:
 ```text
 OPEX
 ```
+
+# Depreciation
+
+SIMRT içerisinde tüm CAPEX yatırımları amortismana tabidir.
+
+Bunlar:
+
+- Capacity Investment
+- Process R&D Investment
+- Starting Point Fixed Assets
+
+için geçerlidir.
+
+---
+
+## Depreciation Method
+
+Doğrusal amortisman yöntemi kullanılır.
+
+```text
+Straight Line Depreciation
+```
