@@ -8,9 +8,64 @@ Takımların verdiği kararlar ile senaryo koşullarını değerlendirir ve paza
 
 Market Engine'in temel hesaplama yöntemi TOPSIS'tir.
 
-Ancak talebin tamamı TOPSIS ile dağıtılmaz.
+Ancak toplam talebin tamamı TOPSIS ile dağıtılmaz.
 
-Talep önce Brand Loyalty mekanizmasından geçirilir, kalan talep TOPSIS ile dağıtılır.
+Önce Brand Loyalty mekanizması çalışır.
+
+Brand Loyalty sonrasında kalan talep TOPSIS aracılığıyla segmentlere dağıtılır.
+
+Kapasite yetersizlikleri oluştuğunda karşılanamayan talep yeniden dağıtıma tabi tutulur.
+
+---
+
+# Engine Position
+
+```text
+Starting Point
+        ↓
+
+Decision
+        ↓
+
+Market Engine
+        ↓
+
+Algorithm Engine
+        ↓
+
+Financial Results
+```
+
+---
+
+# Inputs
+
+## Scenario
+
+Market Engine aşağıdaki senaryo bilgilerini kullanır:
+
+- Market Volume Growth
+- Brand Loyalty Rate
+- Brand Loyalty Price Limit
+- Segment Distribution
+- Economic Conditions
+# SIMRT Market Engine Design
+
+## Purpose
+
+Market Engine müşteri satın alma davranışını simüle eder.
+
+Takımların verdiği kararlar ile senaryo koşullarını değerlendirir ve pazar talebini şirketlere dağıtır.
+
+Market Engine'in temel hesaplama yöntemi TOPSIS'tir.
+
+Ancak toplam talebin tamamı TOPSIS ile dağıtılmaz.
+
+Önce Brand Loyalty mekanizması çalışır.
+
+Brand Loyalty sonrasında kalan talep TOPSIS aracılığıyla segmentlere dağıtılır.
+
+Kapasite yetersizlikleri oluştuğunda karşılanamayan talep yeniden dağıtıma tabi tutulur.
 
 ---
 
@@ -89,7 +144,7 @@ Bir önceki yıldan gelen şirket durumu.
 
 ## Decision
 
-Takım tarafından girilen yıllık kararlar.
+Takımlar tarafından girilen yıllık kararlar.
 
 Örnek:
 
@@ -519,13 +574,59 @@ Premium TOPSIS Score
 
 toplamı olarak hesaplanır.
 
-Bu puan kullanılarak:
+Bu puan kullanılarak yeniden dağıtım yapılır.
+
+---
+
+# Iterative Redistribution Rule
+
+Yeniden dağıtım tek seferle sınırlı değildir.
+
+Her yeniden dağıtım turundan sonra:
 
 ```text
-Unmet Demand Pool
+Remaining Unmet Demand
 ```
 
-yeniden dağıtılır.
+hesaplanır.
+
+Eğer:
+
+```text
+Remaining Unmet Demand > 0
+```
+
+ve
+
+```text
+Satılabilir ürünü olan şirket bulunuyorsa
+```
+
+yeniden dağıtım işlemi tekrar çalıştırılır.
+
+---
+
+# Redistribution Stop Conditions
+
+Aşağıdaki koşullardan biri gerçekleşirse yeniden dağıtım sona erer.
+
+## Condition 1
+
+```text
+Remaining Unmet Demand = 0
+```
+
+Tüm talep karşılanmıştır.
+
+---
+
+## Condition 2
+
+```text
+Available Product = 0
+```
+
+Pazardaki tüm satılabilir ürün tükenmiştir.
 
 ---
 
@@ -554,7 +655,7 @@ Market Share
 
 Final Demand
 /
-Total Market Volume
+Current Market Volume
 ```
 
 ---
