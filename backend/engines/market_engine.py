@@ -1,20 +1,71 @@
-from domain.scenario import Scenario
-from domain.segment import Segment
-from domain.segment_preference import SegmentPreference
-from domain.company_state import CompanyState
-from domain.decision import Decision
-from domain.market_result import MarketResult
+from domain.market_context import MarketContext
+from domain.market_pool_result import MarketPoolResult
 
 
 class MarketEngine:
 
+    def calculate_current_market_volume(
+        self,
+        previous_market_volume: int,
+        market_growth_rate: float
+    ) -> int:
+
+        return int(
+            previous_market_volume
+            * (1 + market_growth_rate)
+        )
+
+    def calculate_brand_loyalty_demand(
+        self,
+        current_market_volume: int,
+        brand_loyalty_rate: float
+    ) -> int:
+
+        return int(
+            current_market_volume
+            * brand_loyalty_rate
+        )
+
+    def calculate_topsis_pool(
+        self,
+        current_market_volume: int,
+        brand_loyalty_demand: int
+    ) -> int:
+
+        return (
+            current_market_volume
+            - brand_loyalty_demand
+        )
+
     def run(
         self,
-        scenario: Scenario,
-        segments: list[Segment],
-        segment_preferences: list[SegmentPreference],
-        company_states: list[CompanyState],
-        decisions: list[Decision]
-    ) -> list[MarketResult]:
+        market_context: MarketContext
+    ) -> MarketPoolResult:
 
-        pass
+        current_market_volume = (
+            self.calculate_current_market_volume(
+                market_context.previous_market_volume,
+                market_context.market_growth_rate
+            )
+        )
+
+        brand_loyalty_demand = (
+            self.calculate_brand_loyalty_demand(
+                current_market_volume,
+                market_context.brand_loyalty_rate
+            )
+        )
+
+        topsis_pool = (
+            self.calculate_topsis_pool(
+                current_market_volume,
+                brand_loyalty_demand
+            )
+        )
+
+        return MarketPoolResult(
+            current_market_volume=current_market_volume,
+            brand_loyalty_demand=brand_loyalty_demand,
+            topsis_pool=topsis_pool
+        )
+`
