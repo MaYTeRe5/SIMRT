@@ -79,7 +79,7 @@ class MarketEngine:
         price_limit: float
     ) -> list[BrandLoyaltyResult]:
 
-        company  if company_count == 0:
+        if company_count == 0:
             return []
 
         equal_share = int(
