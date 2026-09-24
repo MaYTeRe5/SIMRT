@@ -30,5 +30,15 @@ result = engine.distribute_brand_loyalty(
     price_limit=1.75
 )
 
-for item in result:
+print(result)
+
+print("\nResults:")
+
+for item in result.results:
     print(item)
+
+print("\nDistributed Demand:",
+      result.distributed_demand)
+
+print("\nLost Demand:",
+      result.lost_demand)
