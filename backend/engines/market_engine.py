@@ -2,7 +2,7 @@ from domain.market_context import MarketContext
 from domain.market_pool_result import MarketPoolResult
 from domain.company_offer import CompanyOffer
 from domain.brand_loyalty_result import BrandLoyaltyResult
-`
+
 
 
 class MarketEngine:
@@ -71,7 +71,7 @@ class MarketEngine:
             brand_loyalty_demand=brand_loyalty_demand,
             topsis_pool=topsis_pool
         )
-            def distribute_brand_loyalty(
+    def distribute_brand_loyalty(
         self,
         companies: list[CompanyOffer],
         brand_loyalty_demand: int,
@@ -79,7 +79,7 @@ class MarketEngine:
         price_limit: float
     ) -> list[BrandLoyaltyResult]:
 
-        company  if company_count == 0:
+        company_count = len(count == 0:
             return []
 
         equal_share = int(
