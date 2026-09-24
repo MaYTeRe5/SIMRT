@@ -7,5 +7,8 @@ class MarketPoolResult:
 
     brand_loyalty_demand: int
 
-    topsis_pool: int
+    distributed_brand_loyalty_demand: int
 
+    lost_brand_loyalty_demand: int
+
+    topsis_pool: int
