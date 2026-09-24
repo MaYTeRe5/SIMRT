@@ -50,3 +50,33 @@ class StateUpdateEngine:
         return self.calculate_weighted_effect(
             process_rd_history
         )
+
+    def run(
+    self,
+    company_id: str,
+    year_no: int,
+    marketing_history: list[float],
+    product_rd_history: list[float],
+    process_rd_history: list[float]
+) -> StateUpdateResult:
+
+    brand_score = self.calculate_brand_score(
+        marketing_history
+    )
+
+    innovation_score = self.calculate_innovation_score(
+        product_rd_history
+    )
+
+    efficiency_score = self.calculate_efficiency_score(
+        process_rd_history
+    )
+
+    return StateUpdateResult(
+        company_id=company_id,
+        year_no=year_no,
+
+        brand_score=brand_score,
+        innovation_score=innovation_score,
+        efficiency_score=efficiency_score
+    )
