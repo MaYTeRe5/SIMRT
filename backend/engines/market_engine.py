@@ -75,4 +75,42 @@ class MarketEngine:
         self,
         companies: list[CompanyOffer],
         brand_loyalty_demand: int,
-    
+        average_market_price: float,
+        price_limit: float
+    ) -> listcompany_count = len(companies)
+
+        if company_count == 0:
+            return []
+
+        equal_share = int(
+            brand_loyalty_demand / company_count
+        )
+
+        results = []
+
+        for company in companies:
+
+            maximum_price = (
+                average_market_price
+                * price_limit
+            )
+
+            eligible = (
+                company.price <= maximum_price
+            )
+
+            demand = (
+                equal_share
+                if eligible
+                else 0
+            )
+
+            results.append(
+                BrandLoyaltyResult(
+                    company_id=company.company_id,
+                    brand_loyalty_demand=demand,
+                    eligible=eligible
+                )
+            )
+
+        return results
