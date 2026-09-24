@@ -8,4 +8,4 @@ class MarketPoolResult:
     brand_loyalty_demand: int
 
     topsis_pool: int
-``
+
