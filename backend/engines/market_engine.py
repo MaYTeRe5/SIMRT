@@ -71,46 +71,46 @@ class MarketEngine:
             topsis_pool=topsis_pool
         )
 
-def distribute_brand_loyalty(
-    self,
-    companies: list[CompanyOffer],
-    brand_loyalty_demand: int,
-    average_market_price: float,
-    price_limit: float
-) -> list[BrandLoyaltyResult]:
+    def distribute_brand_loyalty(
+        self,
+        companies: list[CompanyOffer],
+        brand_loyalty_demand: int,
+        average_market_price: float,
+        price_limit: float
+    ) -> listcompany_count = len(companies)
 
-    company  if company_count == 0:
-        return []
+        if company_count == 0:
+            return []
 
-    equal_share = int(
-        brand_loyalty_demand / company_count
-    )
-
-    results = []
-
-    for company in companies:
-
-        maximum_price = (
-            average_market_price
-            * price_limit
+        equal_share = int(
+            brand_loyalty_demand / company_count
         )
 
-        eligible = (
-            company.price <= maximum_price
-        )
+        results = []
 
-        demand = (
-            equal_share
-            if eligible
-            else 0
-        )
+        for company in companies:
 
-        results.append(
-            BrandLoyaltyResult(
-                company_id=company.company_id,
-                brand_loyalty_demand=demand,
-                eligible=eligible
+            maximum_price = (
+                average_market_price
+                * price_limit
             )
-        )
 
-    return results
+            eligible = (
+                company.price <= maximum_price
+            )
+
+            demand = (
+                equal_share
+                if eligible
+                else 0
+            )
+
+            results.append(
+                BrandLoyaltyResult(
+                    company_id=company.company_id,
+                    brand_loyalty_demand=demand,
+                    eligible=eligible
+                )
+            )
+
+        return results
