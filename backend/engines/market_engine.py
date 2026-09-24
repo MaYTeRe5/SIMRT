@@ -62,10 +62,19 @@ class MarketEngine:
             )
         )
 
+        brand_loyalty_result = (
+            self.distribute_brand_loyalty(
+                companies=companies,
+                brand_loyalty_demand=brand_loyalty_demand,
+                average_market_price=100,
+                price_limit=market_context.brand_loyalty_price_limit
+            )
+        )
+        
         topsis_pool = (
             self.calculate_topsis_pool(
                 current_market_volume,
-                brand_loyalty_demand
+                brand_loyalty_result.distributed_demand
             )
         )
 
@@ -74,9 +83,11 @@ class MarketEngine:
 
             brand_loyalty_demand=brand_loyalty_demand,
 
-            distributed_brand_loyalty_demand=brand_loyalty_demand,
+            distributed_brand_loyalty_demand=
+                brand_loyalty_result.distributed_demand,
 
-            lost_brand_loyalty_demand=0,
+            lost_brand_loyalty_demand=
+                brand_loyalty_result.lost_demand,
 
             topsis_pool=topsis_pool
         )
