@@ -58,7 +58,7 @@ class StateUpdateEngine:
     marketing_history: list[float],
     product_rd_history: list[float],
     process_rd_history: list[float]
-) -> StateUpdateResult:
+    ) -> StateUpdateResult:
 
     brand_score = self.calculate_brand_score(
         marketing_history
