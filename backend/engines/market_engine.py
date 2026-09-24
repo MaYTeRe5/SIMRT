@@ -70,7 +70,13 @@ class MarketEngine:
 
         return MarketPoolResult(
             current_market_volume=current_market_volume,
+
             brand_loyalty_demand=brand_loyalty_demand,
+
+            distributed_brand_loyalty_demand=brand_loyalty_demand,
+
+            lost_brand_loyalty_demand=0,
+
             topsis_pool=topsis_pool
         )
 
