@@ -79,7 +79,7 @@ class MarketEngine:
         price_limit: float
     ) -> list[BrandLoyaltyResult]:
     
-        company_count = len
+        company_count = len(companies)
 
         if company_count == 0:
             return []
