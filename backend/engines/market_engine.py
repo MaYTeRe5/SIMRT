@@ -2,6 +2,9 @@ from domain.market_context import MarketContext
 from domain.market_pool_result import MarketPoolResult
 from domain.company_offer import CompanyOffer
 from domain.brand_loyalty_result import BrandLoyaltyResult
+from domain.brand_loyalty_distribution_result import (
+    BrandLoyaltyDistributionResult
+)
 
 
 class MarketEngine:
@@ -88,6 +91,10 @@ class MarketEngine:
             brand_loyalty_demand / company_count
         )
 
+        lost_demand = 0
+
+        distributed_demand = 0
+        
         results = []
 
         for company in companies:
@@ -107,6 +114,11 @@ class MarketEngine:
                 else 0
             )
 
+            if eligible:
+                distributed_demand += demand
+            else:
+                lost_demand += equal_share
+                
             results.append(
                 BrandLoyaltyResult(
                     company_id=company.company_id,
@@ -115,4 +127,8 @@ class MarketEngine:
                 )
             )
 
-        return results
+        return BrandLoyaltyDistributionResult(
+            results=results,
+            distributed_demand=distributed_demand,
+            lost_demand=lost_demand
+        )
