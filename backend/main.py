@@ -1,21 +1,29 @@
-from services.simulation_service import SimulationService
-from services.team_service import TeamService
+from engines.state_update_engine import StateUpdateEngine
 
 
-simulation_service = SimulationService()
-team_service = TeamService()
+engine = StateUpdateEngine()
 
+result = engine.run(
+    company_id="COMP001",
+    year_no=3,
 
-simulation = simulation_service.create_simulation(
-    "SIM001",
-    "SIMRT Leadership Challenge"
+    marketing_history=[
+        1_000_000,
+        4_000_000,
+        1_000_000
+    ],
+
+    product_rd_history=[
+        500_000,
+        1_000_000,
+        2_000_000
+    ],
+
+    process_rd_history=[
+        300_000,
+        300_000,
+        300_000
+    ]
 )
 
-team_a = team_service.create_team(
-    "TEAM001",
-    "Blue Tigers",
-    "COMP001"
-)
-
-print(simulation)
-print(team_a)
+print(result)
