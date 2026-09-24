@@ -80,10 +80,11 @@ class MarketEngine:
         price_limit: float
     ) -> list[BrandLoyaltyResult]:
 
-        company_count = len(companies)
+company_count = len(companies)
 
-            return []
-
+if company_count == 0:
+    return []
+    
         equal_share = int(
             brand_loyalty_demand / company_count
         )
