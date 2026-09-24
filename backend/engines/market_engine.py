@@ -44,7 +44,8 @@ class MarketEngine:
 
     def run(
         self,
-        market_context: MarketContext
+        market_context: MarketContext,
+        companies: list[CompanyOffer]
     ) -> MarketPoolResult:
 
         current_market_volume = (
