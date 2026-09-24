@@ -37,6 +37,13 @@ companies = [
 
 engine = MarketEngine()
 
+result = engine.run(
+    market_context,
+    companies
+)
+
+print(result)
+
 print(market_context)
 
 print(companies)
