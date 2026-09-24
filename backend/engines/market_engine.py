@@ -68,4 +68,3 @@ class MarketEngine:
             brand_loyalty_demand=brand_loyalty_demand,
             topsis_pool=topsis_pool
         )
-`
