@@ -1,4 +1,5 @@
 from domain.decision import Decision
+from domain.state_update_result import StateUpdateResult
 
 
 class StateUpdateEngine:
