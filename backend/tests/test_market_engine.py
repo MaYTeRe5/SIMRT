@@ -43,8 +43,3 @@ result = engine.run(
 )
 
 print(result)
-
-print(market_context)
-
-print(companies)
-
