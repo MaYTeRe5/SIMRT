@@ -4,7 +4,6 @@ from domain.company_offer import CompanyOffer
 from domain.brand_loyalty_result import BrandLoyaltyResult
 
 
-
 class MarketEngine:
 
     def calculate_current_market_volume(
@@ -76,45 +75,4 @@ class MarketEngine:
         self,
         companies: list[CompanyOffer],
         brand_loyalty_demand: int,
-        average_market_price: float,
-        price_limit: float
-    ) -> list[BrandLoyaltyResult]:
-
-company_count = len(companies)
-
-if company_count == 0:
-    return []
     
-        equal_share = int(
-            brand_loyalty_demand / company_count
-        )
-
-        results = []
-
-        for company in companies:
-
-            maximum_price = (
-                average_market_price
-                * price_limit
-            )
-
-            eligible = (
-                company.price
-                <= maximum_price
-            )
-
-            demand = (
-                equal_share
-                if eligible
-                else 0
-            )
-
-            results.append(
-                BrandLoyaltyResult(
-                    company_id=company.company_id,
-                    brand_loyalty_demand=demand,
-                    eligible=eligible
-                )
-            )
-
-        return results
