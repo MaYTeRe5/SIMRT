@@ -77,9 +77,7 @@ class MarketEngine:
         brand_loyalty_demand: int,
         average_market_price: float,
         price_limit: float
-    ) -> list[BrandLoyaltyResult]:
-
-      )
+    ) -> list[BrandLoyaltyResult(companies)
 
         if company_count == 0:
             return []
