@@ -19,3 +19,25 @@ class TopsisEngine:
             v / denominator
             for v in values
         ]
+
+    def get_positive_ideal(
+        self,
+        values: list[float],
+        is_cost_criterion: bool
+    ) -> float:
+
+        if is_cost_criterion:
+            return min(values)
+
+        return max(values)
+
+    def get_negative_ideal(
+        self,
+        values: list[float],
+        is_cost_criterion: bool
+    ) -> float:
+
+        if is_cost_criterion:
+            return max(values)
+
+        return min(values)
