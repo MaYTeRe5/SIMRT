@@ -63,3 +63,11 @@ class TopsisEngine:
             normalized_value
             - negative_ideal
         )
+
+    def apply_weight(
+        self,
+        difference: float,
+        weight: float
+    ) -> float:
+
+        return difference * weight
