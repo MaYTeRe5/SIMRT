@@ -41,3 +41,25 @@ class TopsisEngine:
             return max(values)
 
         return min(values)
+
+    def calculate_positive_difference(
+        self,
+        normalized_value: float,
+        positive_ideal: float
+    ) -> float:
+
+        return (
+            normalized_value
+            - positive_ideal
+        )
+
+    def calculate_negative_difference(
+        self,
+        normalized_value: float,
+        negative_ideal: float
+    ) -> float:
+
+        return (
+            normalized_value
+            - negative_ideal
+        )
