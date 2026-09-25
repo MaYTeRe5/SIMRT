@@ -1,4 +1,4 @@
-    from domain.topsis_matrix import TopsisMatrix
+from domain.topsis_matrix import TopsisMatrix
 
 
 class TopsisEngine:
