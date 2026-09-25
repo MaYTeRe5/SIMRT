@@ -71,3 +71,15 @@ class TopsisEngine:
     ) -> float:
 
         return difference * weight
+
+    def calculate_distance(
+        self,
+        weighted_differences: list[float]
+    ) -> float:
+
+        return (
+            sum(
+                difference ** 2
+                for difference in weighted_differences
+            )
+        ) ** 0.5
