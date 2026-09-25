@@ -675,3 +675,11 @@ Her şirket için aşağıdaki bilgiler üretilir:
 - redistributed_demand
 - final_demand
 - market_share
+
+TOPSIS Pool
+
+=
+
+Current Market Volume
+-
+Distributed Brand Loyalty Demand
