@@ -1,4 +1,4 @@
-from domain.topsis_matrix import TopsisMatrix
+    from domain.topsis_matrix import TopsisMatrix
 
 
 class TopsisEngine:
@@ -83,3 +83,22 @@ class TopsisEngine:
                 for difference in weighted_differences
             )
         ) ** 0.5
+
+    def calculate_relative_closeness(
+        self,
+        positive_distance: float,
+        negative_distance: float
+    ) -> float:
+
+        denominator = (
+            positive_distance
+            + negative_distance
+        )
+
+        if denominator == 0:
+            return 0.0
+
+        return (
+            negative_distance
+            / denominator
+        )
