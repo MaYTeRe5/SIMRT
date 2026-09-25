@@ -45,7 +45,6 @@ matrix = TopsisMatrix(
 
 
 segment_preference = SegmentPreference(
-    scenario_id="SCN001",
     segment_id="VALUE",
 
     weight_price=60,
