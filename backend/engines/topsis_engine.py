@@ -9,11 +9,11 @@ class TopsisEngine:
     ) -> list[float]:
 
         denominator = (
-            sum(v *s)
+            sum(v ** 2 for v in values)
         ) ** 0.5
 
         if denominator == 0:
-            return [0 for _ in values]
+            return [0.0 for _ in values]
 
         return [
             v / denominator
