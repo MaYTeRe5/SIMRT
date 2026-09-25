@@ -23,10 +23,26 @@ negative_difference = (
     )
 )
 
-print("Positive Difference:")
-print(positive_difference)
+weighted_positive_difference = (
+    engine.apply_weight(
+        positive_difference,
+        0.60
+    )
+)
+
+weighted_negative_difference = (
+    engine.apply_weight(
+        negative_difference,
+        0.60
+    )
+)
 
 print()
 
-print("Negative Difference:")
-print(negative_difference)
+print("Weighted Positive Difference:")
+print(weighted_positive_difference)
+
+print()
+
+print("Weighted Negative Difference:")
+print(weighted_negative_difference)
