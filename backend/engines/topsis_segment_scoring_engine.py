@@ -4,4 +4,9 @@ from domain.segment_preference import SegmentPreference
 
 class TopsisSegmentScoringEngine:
 
-    pass
+    def score(
+        self,
+        matrix: TopsisMatrix,
+        segment_preference: SegmentPreference
+    ):
+        pass
