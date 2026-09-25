@@ -13,7 +13,7 @@ class SegmentDemandAllocationEngine:
         topsis_results: list[SegmentTopsisResult]
     ) -> list[CompanySegmentDemand]:
 
-                if not topsis_results:
+        if not topsis_results:
             return []
 
         total_score = sum(
