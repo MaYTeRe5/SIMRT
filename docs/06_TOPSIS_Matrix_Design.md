@@ -431,6 +431,71 @@ Balanced Score
 Premium Score
 ```
 
+# SIMRT TOPSIS Implementation Note
+
+SIMRT içerisinde kullanılan TOPSIS yaklaşımı klasik akademik TOPSIS akışından farklı bir hesaplama sırası kullanır.
+
+SIMRT sırası:
+
+```text
+Decision Matrix
+↓
+Normalization
+↓
+Positive / Negative Ideal Values
+↓
+Distance Calculation
+↓
+Weight Application
+↓
+Relative Closeness
+```
+
+---
+
+## Mathematical Equivalence
+
+SIMRT yaklaşımında ağırlıklar ideal ve negatif ideal değerlere olan farklar üzerinde uygulanır.
+
+```text
+Weighted Difference
+
+=
+
+Criterion Weight
+×
+(Normalized Value - Ideal Value)
+```
+
+Daha sonra uzaklık hesaplamasında kullanılır.
+
+```text
+Distance
+
+=
+
+√Σ(Weighted Difference²)
+```
+
+Bu yöntem, pozitif ağırlıklar kullanıldığında klasik TOPSIS'te ağırlıklandırılmış normalize matris üzerinden yapılan hesaplamalarla matematiksel olarak eşdeğer sonuç üretir.
+
+---
+
+## Design Principle
+
+SIMRT'nin amacı akademik TOPSIS'in birebir uygulanması değil, Excel tabanlı referans motor ile birebir tutarlı sonuç üretmektir.
+
+Bu nedenle Python uygulaması öncelikli olarak Excel hesaplama mantığını takip edecektir.
+
+```text
+Excel Result
+=
+Python Result
+```
+
+hedefi temel tasarım prensibidir.
+`
+
 toplamıdır.
 
 Bu toplam puan ikinci ve sonraki dağıtım turlarında kullanılır.
