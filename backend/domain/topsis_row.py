@@ -1,6 +1,8 @@
+from dataclasses import dataclass
+
+
 @dataclass
 class TopsisRow:
-
     company_id: str
 
     price: float
