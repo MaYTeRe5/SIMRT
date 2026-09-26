@@ -12,7 +12,9 @@ class SegmentDemandAggregationEngine:
     def aggregate(
         self,
         segment_demands: list[CompanySegmentDemand]
-    ) -> listcompany_totals = {}
+    ) -> list[CompanyTotalDemand]:
+ 
+        company_totals = {}
 
         for demand in segment_demands:
 
