@@ -15,7 +15,7 @@ class SegmentDemandAggregationEngine:
 
             company_id = demand.company_id
 
-          totals:
+            if company_id not in company_totals:
 
                 company_totals[company_id] = (
                     CompanyTotalDemand(
