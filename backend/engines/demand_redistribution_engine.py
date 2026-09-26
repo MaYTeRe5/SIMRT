@@ -37,31 +37,16 @@ class DemandRedistributionEngine:
             )
 
             unmet_demand = max(
-                demand.total_demand
-                - sales_units,
+                demand.total_demand - sales_units,
                 0
             )
 
             remaining_supply = max(
-                available_supply
-                - sales_units,
+                available_supply - sales_units,
                 0
             )
 
             results.append(
                 UnmetDemandResult(
                     company_id=demand.company_id,
-
-                    demand_units=demand.total_demand,
-
-                    available_supply=available_supply,
-
-                    sales_units=sales_units,
-
-                    unmet_demand=unmet_demand,
-
-                    remaining_supply=remaining_supply
-                )
-            )
-
-        return results
+                    demand_units=demand
