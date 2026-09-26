@@ -60,4 +60,3 @@ class SegmentDemandAggregationEngine:
         return list(
             company_totals.values()
         )
-`
