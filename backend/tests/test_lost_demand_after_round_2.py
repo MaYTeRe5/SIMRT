@@ -86,4 +86,4 @@ result = engine.run_redistribution(
 
 print("Round Results")
 
-for round_result in result
+for round_result in result:
