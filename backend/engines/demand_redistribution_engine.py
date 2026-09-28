@@ -3,6 +3,7 @@ from domain.company_available_supply import CompanyAvailableSupply
 from domain.company_redistribution_score import (
     CompanyRedistributionScore
 )
+from domain.company_final_demand import CompanyFinalDemand
 from domain.unmet_demand_result import UnmetDemandResult
 from domain.redistribution_allocation import (
     RedistributionAllocation
@@ -204,52 +205,108 @@ class DemandRedistributionEngine:
 
         return updated_results
 
-    def apply_redistribution_round(
+    def run_redistribution(
         self,
-        unmet_results: list[UnmetDemandResult],
-        allocations: list[RedistributionAllocation]
+        demands: list[CompanyTotalDemand],
+        supplies: list[CompanyAvailableSupply],
+        redistribution_scores: list[
+            CompanyRedistributionScore
+        ],
+        maximum_rounds: int = 2
     ):
-        allocation_lookup = {
-            allocation.company_id:
-                allocation.allocated_demand
-            for allocation in allocations
+        current_results = self.calculate_unmet_demand(
+            demands,
+            supplies
+        )
+
+        remaining_unmet_demand = sum(
+            result.unmet_demand
+            for result in current_results
+        )
+
+        redistributed_by_company = {
+            demand.company_id: 0
+            for demand in demands
         }
 
-        updated_results = []
+        round_results = []
+        round_allocations = []
 
-        for result in unmet_results:
+        for round_no in range(
+            1,
+            maximum_rounds + 1
+        ):
+            if remaining_unmet_demand == 0:
+                break
 
-            allocated_demand = allocation_lookup.get(
-                result.company_id,
-                0
-            )
-
-            updated_sales_units = (
-                result.sales_units
-                + allocated_demand
-            )
-
-            updated_remaining_supply = max(
-                result.remaining_supply
-                - allocated_demand,
-                0
-            )
-
-            updated_results.append(
-                UnmetDemandResult(
-                    company_id=result.company_id,
-                    demand_units=result.demand_units,
-
-                    available_supply=result.available_supply,
-
-                    sales_units=updated_sales_units,
-
-                    unmet_demand=0,
-
-                    remaining_supply=updated_remaining_supply
+            allocations, round_result = (
+                self.calculate_redistribution_round(
+                    round_no=round_no,
+                    unmet_results=current_results,
+                    redistribution_scores=(
+                        redistribution_scores
+                    ),
+                    unmet_demand_pool=(
+                        remaining_unmet_demand
+                    )
                 )
             )
 
-        return updated_results
+            round_results.append(
+                round_result
+            )
 
+            round_allocations.append(
+                allocations
+            )
 
+            if not allocations:
+                break
+
+            for allocation in allocations:
+                redistributed_by_company[
+                    allocation.company_id
+                ] += allocation.allocated_demand
+
+            current_results = (
+                self.apply_redistribution_round(
+                    current_results,
+                    allocations
+                )
+            )
+
+            remaining_unmet_demand = (
+                round_result.remaining_unmet_demand
+            )
+
+        final_demands = []
+
+        for demand in demands:
+            redistributed_demand = (
+                redistributed_by_company.get(
+                    demand.company_id,
+                    0
+                )
+            )
+
+            final_demands.append(
+                CompanyFinalDemand(
+                    company_id=demand.company_id,
+                    initial_demand=demand.total_demand,
+                    redistributed_demand=(
+                        redistributed_demand
+                    ),
+                    final_demand=(
+                        demand.total_demand
+                        + redistributed_demand
+                    )
+                )
+            )
+
+        return {
+            "final_demands": final_demands,
+            "final_company_results": current_results,
+            "round_results": round_results,
+            "round_allocations": round_allocations,
+            "lost_demand": remaining_unmet_demand
+        }
