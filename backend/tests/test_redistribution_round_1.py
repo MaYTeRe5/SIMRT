@@ -10,24 +10,6 @@ from engines.demand_redistribution_engine import (
     DemandRedistributionEngine
 )
 
-engine = DemandRedistributionEngine()
-
-allocations = (
-    engine.calculate_redistribution_round(
-        round_no=1,
-        unmet_results=unmet_results,
-        redistribution_scores=redistribution_scores
-    )
-)
-
-print()
-
-print("Round 1 Allocations")
-
-print()
-
-print(allocations)
-
 
 unmet_results = [
 
@@ -72,8 +54,20 @@ redistribution_scores = [
     )
 ]
 
-print(unmet_results)
+engine = DemandRedistributionEngine()
+
+allocations = (
+    engine.calculate_redistribution_round(
+        round_no=1,
+        unmet_results=unmet_results,
+        redistribution_scores=redistribution_scores
+    )
+)
 
 print()
 
-print(redistribution_scores)
+print("Round 1 Allocations")
+
+print()
+
+print(allocations)
