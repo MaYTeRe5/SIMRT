@@ -66,12 +66,14 @@ class DemandRedistributionEngine:
         unmet_results: list[UnmetDemandResult],
         redistribution_scores: list[
             CompanyRedistributionScore
-        ]
+        ],
+        unmet_demand_pool: int | None = None
     ):
-        unmet_demand_pool = sum(
-            result.unmet_demand
-            for result in unmet_results
-        )
+        if unmet_demand_pool is None:
+            unmet_demand_pool = sum(
+                result.unmet_demand
+                for result in unmet_results
+            )
 
         score_lookup = {
             score.company_id: score.redistribution_score
@@ -158,3 +160,46 @@ class DemandRedistributionEngine:
         )
 
         return allocations, round_result
+
+    def apply_redistribution_round(
+        self,
+        unmet_results: list[UnmetDemandResult],
+        allocations: list[RedistributionAllocation]
+    ):
+        allocation_lookup = {
+            allocation.company_id:
+                allocation.allocated_demand
+            for allocation in allocations
+        }
+
+        updated_results = []
+
+        for result in unmet_results:
+            allocated_demand = allocation_lookup.get(
+                result.company_id,
+                0
+            )
+
+            updated_sales_units = (
+                result.sales_units
+                + allocated_demand
+            )
+
+            updated_remaining_supply = max(
+                result.remaining_supply
+                - allocated_demand,
+                0
+            )
+
+            updated_results.append(
+                UnmetDemandResult(
+                    company_id=result.company_id,
+                    demand_units=result.demand_units,
+                    available_supply=result.available_supply,
+                    sales_units=updated_sales_units,
+                    unmet_demand=0,
+                    remaining_supply=updated_remaining_supply
+                )
+            )
+
+        return updated_results
