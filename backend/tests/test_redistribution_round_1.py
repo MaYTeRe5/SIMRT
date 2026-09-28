@@ -1,9 +1,9 @@
-from domain.company_redistribution_score import (
-    CompanyRedistributionScore
-)
-
 from domain.unmet_demand_result import (
     UnmetDemandResult
+)
+
+from domain.company_redistribution_score import (
+    CompanyRedistributionScore
 )
 
 
