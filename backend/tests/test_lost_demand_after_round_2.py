@@ -86,4 +86,24 @@ result = engine.run_redistribution(
 
 print("Round Results")
 
-for round_result in result:
+for round_result in result["round_results"]:
+    print(round_result)
+
+print()
+
+print("Final Company Results")
+
+for company_result in result["final_company_results"]:
+    print(company_result)
+
+print()
+
+print("Final Demands")
+
+for final_demand in result["final_demands"]:
+    print(final_demand)
+
+print()
+
+print("Lost Demand")
+print(result["lost_demand"])
