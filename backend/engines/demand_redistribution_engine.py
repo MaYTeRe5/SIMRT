@@ -1,14 +1,6 @@
-from domain.company_total_demand import (
-    CompanyTotalDemand
-)
-
-from domain.company_available_supply import (
-    CompanyAvailableSupply
-)
-
-from domain.unmet_demand_result import (
-    UnmetDemandResult
-)
+from domain.company_total_demand import CompanyTotalDemand
+from domain.company_available_supply import CompanyAvailableSupply
+from domain.unmet_demand_result import UnmetDemandResult
 
 
 class DemandRedistributionEngine:
@@ -17,7 +9,8 @@ class DemandRedistributionEngine:
         self,
         demands: list[CompanyTotalDemand],
         supplies: list[CompanyAvailableSupply]
-    ) -> listsupply_lookup = {
+    ):
+        supply_lookup = {
             supply.company_id: supply.available_units
             for supply in supplies
         }
@@ -25,7 +18,6 @@ class DemandRedistributionEngine:
         results = []
 
         for demand in demands:
-
             available_supply = supply_lookup.get(
                 demand.company_id,
                 0
@@ -49,4 +41,12 @@ class DemandRedistributionEngine:
             results.append(
                 UnmetDemandResult(
                     company_id=demand.company_id,
-                    demand_units=demand
+                    demand_units=demand.total_demand,
+                    available_supply=available_supply,
+                    sales_units=sales_units,
+                    unmet_demand=unmet_demand,
+                    remaining_supply=remaining_supply
+                )
+            )
+
+        return results
