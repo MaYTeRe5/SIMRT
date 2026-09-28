@@ -105,5 +105,20 @@ for final_demand in result["final_demands"]:
 
 print()
 
+assert result["lost_demand"] == 200000
+assert result["round_results"][0].distributed_demand == 20000
+assert result["round_results"][1].distributed_demand == 0
+
+final_results = {
+    item.company_id: item
+    for item in result["final_company_results"]
+}
+
+assert final_results["A"].sales_units == 180000
+assert final_results["B"].sales_units == 170000
+assert final_results["C"].sales_units == 100000
+
+print("Lost demand after Round 2 test passed.")
+
 print("Lost Demand")
 print(result["lost_demand"])
