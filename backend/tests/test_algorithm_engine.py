@@ -2,6 +2,7 @@ from engines.algorithm_engine import (
     AlgorithmEngine
 )
 
+
 engine = AlgorithmEngine()
 
 result = engine.calculate_operating_result(
