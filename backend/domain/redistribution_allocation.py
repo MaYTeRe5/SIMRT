@@ -8,4 +8,3 @@ class RedistributionAllocation:
     redistribution_score: float
 
     allocated_demand: int
-`
