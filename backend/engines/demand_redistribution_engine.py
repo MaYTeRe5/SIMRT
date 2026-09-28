@@ -64,7 +64,9 @@ class DemandRedistributionEngine:
         self,
         round_no: int,
         unmet_results: list[UnmetDemandResult],
-        redistribution_scores: list[CompanyRedistributionScore]
+        redistribution_scores: list[
+            CompanyRedistributionScore
+        ]
     ):
         unmet_demand_pool = sum(
             result.unmet_demand
@@ -81,7 +83,10 @@ class DemandRedistributionEngine:
             for result in unmet_results
             if (
                 result.remaining_supply > 0
-                and score_lookup.get(result.company_id, 0) > 0
+                and score_lookup.get(
+                    result.company_id,
+                    0
+                ) > 0
             )
         ]
 
@@ -102,7 +107,9 @@ class DemandRedistributionEngine:
                 unmet_demand_before=unmet_demand_pool,
                 distributed_demand=0,
                 remaining_unmet_demand=unmet_demand_pool,
-                eligible_company_count=len(eligible_results)
+                eligible_company_count=len(
+                    eligible_results
+                )
             )
 
             return allocations, round_result
@@ -145,7 +152,9 @@ class DemandRedistributionEngine:
             unmet_demand_before=unmet_demand_pool,
             distributed_demand=distributed_demand,
             remaining_unmet_demand=remaining_pool,
-            eligible_company_count=len(eligible_results)
+            eligible_company_count=len(
+                eligible_results
+            )
         )
 
         return allocations, round_result
