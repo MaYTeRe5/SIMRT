@@ -217,3 +217,17 @@ class AlgorithmEngine:
             profit_before_tax
             - tax_expense
         )
+
+    def calculate_required_borrowing(
+        self,
+        ending_cash: float,
+        minimum_cash: float
+    ) -> float:
+
+        if ending_cash >= minimum_cash:
+            return 0.0
+
+        return (
+            minimum_cash
+            - ending_cash
+        )
