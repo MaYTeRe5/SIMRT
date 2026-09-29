@@ -5,6 +5,32 @@ from domain.algorithm_result import (
 
 class AlgorithmEngine:
 
+    def calculate_weighted_average_cost(
+        self,
+        beginning_inventory_units: int,
+        beginning_inventory_value: float,
+        production_units: int,
+        production_cost: float
+    ) -> float:
+
+        total_units = (
+            beginning_inventory_units
+            + production_units
+        )
+
+        if total_units == 0:
+            return 0.0
+
+        total_cost = (
+            beginning_inventory_value
+            + production_cost
+        )
+
+        return (
+            total_cost
+            / total_units
+        )
+
     def calculate_operating_result(
         self,
         company_id: str,
@@ -42,18 +68,11 @@ class AlgorithmEngine:
 
         return AlgorithmResult(
             company_id=company_id,
-
             sales_units=sales_units,
-
             ending_inventory=ending_inventory,
-
             ending_capacity=ending_capacity,
-
             unit_cost=unit_cost,
-
             revenue=revenue,
-
             cogs=cogs,
-
             gross_profit=gross_profit
         )
