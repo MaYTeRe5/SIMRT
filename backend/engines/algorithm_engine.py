@@ -375,3 +375,14 @@ class AlgorithmEngine:
 
             equity=equity
         )
+
+    def calculate_operating_cash_flow(
+        self,
+        net_profit: float,
+        depreciation: float
+    ) -> float:
+
+        return (
+            net_profit
+            + depreciation
+        )
