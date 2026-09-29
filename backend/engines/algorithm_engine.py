@@ -2,6 +2,10 @@ from domain.algorithm_result import (
     AlgorithmResult
 )
 
+from domain.financial_result import (
+    FinancialResult
+)
+
 
 class AlgorithmEngine:
 
@@ -230,4 +234,83 @@ class AlgorithmEngine:
         return (
             minimum_cash
             - ending_cash
+        )
+
+    def build_financial_result(
+        self,
+
+        company_id: str,
+
+        revenue: float,
+
+        cogs: float,
+
+        gross_profit: float,
+
+        operating_expense: float,
+
+        ebitda: float,
+
+        depreciation: float,
+
+        interest_income: float,
+
+        interest_expense: float,
+
+        tax_rate: float
+    ) -> FinancialResult:
+
+        ebit = self.calculate_ebit(
+            ebitda,
+            depreciation
+        )
+
+        profit_before_tax = (
+            self.calculate_profit_before_tax(
+                ebit,
+                interest_income,
+                interest_expense
+            )
+        )
+
+        tax_expense = (
+            self.calculate_tax_expense(
+                profit_before_tax,
+                tax_rate
+            )
+        )
+
+        net_profit = (
+            self.calculate_net_profit(
+                profit_before_tax,
+                tax_expense
+            )
+        )
+
+        return FinancialResult(
+            company_id=company_id,
+
+            revenue=revenue,
+
+            cogs=cogs,
+
+            gross_profit=gross_profit,
+
+            operating_expense=operating_expense,
+
+            ebitda=ebitda,
+
+            depreciation=depreciation,
+
+            ebit=ebit,
+
+            interest_income=interest_income,
+
+            interest_expense=interest_expense,
+
+            profit_before_tax=profit_before_tax,
+
+            tax_expense=tax_expense,
+
+            net_profit=net_profit
         )
