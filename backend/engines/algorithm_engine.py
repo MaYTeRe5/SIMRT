@@ -157,3 +157,14 @@ class AlgorithmEngine:
             "total_operating_expense":
                 total_operating_expense
         }
+
+    def calculate_ebitda(
+        self,
+        gross_profit: float,
+        operating_expense: float
+    ) -> float:
+
+        return (
+            gross_profit
+            - operating_expense
+        )
