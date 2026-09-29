@@ -6,6 +6,10 @@ from domain.financial_result import (
     FinancialResult
 )
 
+from domain.balance_sheet_result import (
+    BalanceSheetResult
+)
+
 
 class AlgorithmEngine:
 
@@ -326,4 +330,48 @@ class AlgorithmEngine:
             previous_equity
             + net_profit
             - dividend
+        )
+
+    def build_balance_sheet_result(
+        self,
+        company_id: str,
+
+        cash: float,
+        receivables: float,
+        inventory_value: float,
+        fixed_assets: float,
+
+        payables: float,
+        debt: float,
+        equity: float
+    ) -> BalanceSheetResult:
+
+        total_assets = (
+            cash
+            + receivables
+            + inventory_value
+            + fixed_assets
+        )
+
+        total_liabilities = (
+            payables
+            + debt
+        )
+
+        return BalanceSheetResult(
+            company_id=company_id,
+
+            cash=cash,
+            receivables=receivables,
+            inventory_value=inventory_value,
+            fixed_assets=fixed_assets,
+
+            total_assets=total_assets,
+
+            payables=payables,
+            debt=debt,
+
+            total_liabilities=total_liabilities,
+
+            equity=equity
         )
