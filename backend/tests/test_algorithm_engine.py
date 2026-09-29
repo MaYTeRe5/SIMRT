@@ -20,3 +20,25 @@ result = engine.calculate_operating_result(
 )
 
 print(result)
+
+    def calculate_cogs(
+        self,
+        sales_units: int,
+        weighted_average_cost: float
+    ) -> float:
+
+        return (
+            sales_units
+            * weighted_average_cost
+        )
+
+    def calculate_inventory_value(
+        self,
+        ending_inventory_units: int,
+        weighted_average_cost: float
+    ) -> float:
+
+        return (
+            ending_inventory_units
+            * weighted_average_cost
+        )
