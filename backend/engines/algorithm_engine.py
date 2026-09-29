@@ -314,3 +314,16 @@ class AlgorithmEngine:
 
             net_profit=net_profit
         )
+
+    def calculate_ending_equity(
+        self,
+        previous_equity: float,
+        net_profit: float,
+        dividend: float = 0
+    ) -> float:
+
+        return (
+            previous_equity
+            + net_profit
+            - dividend
+        )
