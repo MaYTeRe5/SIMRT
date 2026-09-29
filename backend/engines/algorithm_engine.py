@@ -97,3 +97,16 @@ class AlgorithmEngine:
                ending_inventory_units
                * weighted_average_cost
            )
+    def calculate_depreciation(
+        self,
+        asset_value: float,
+        useful_life: int
+    ) -> float:
+
+        if useful_life == 0:
+            return 0.0
+
+        return (
+            asset_value
+            / useful_life
+        )
