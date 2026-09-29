@@ -110,3 +110,50 @@ class AlgorithmEngine:
             asset_value
             / useful_life
         )
+
+    def calculate_operating_expense(
+        self,
+        marketing_fixed_cost: float,
+        marketing_variable_cost: float,
+
+        product_rd_fixed_cost: float,
+        product_rd_variable_cost: float,
+
+        general_management_fixed_cost: float,
+        general_management_variable_cost: float
+    ):
+
+        marketing_total_cost = (
+            marketing_fixed_cost
+            + marketing_variable_cost
+        )
+
+        product_rd_total_cost = (
+            product_rd_fixed_cost
+            + product_rd_variable_cost
+        )
+
+        general_management_total_cost = (
+            general_management_fixed_cost
+            + general_management_variable_cost
+        )
+
+        total_operating_expense = (
+            marketing_total_cost
+            + product_rd_total_cost
+            + general_management_total_cost
+        )
+
+        return {
+            "marketing_total_cost":
+                marketing_total_cost,
+
+            "product_rd_total_cost":
+                product_rd_total_cost,
+
+            "general_management_total_cost":
+                general_management_total_cost,
+
+            "total_operating_expense":
+                total_operating_expense
+        }
