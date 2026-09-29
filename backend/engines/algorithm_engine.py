@@ -77,24 +77,23 @@ class AlgorithmEngine:
             gross_profit=gross_profit
         )
 
-        def calculate_cogs(
-            self,
-            sales_units: int,
+    def calculate_cogs(
+           self,
+           sales_units: int,
             weighted_average_cost: float
-        ) -> float:
+       ) -> float:
 
+           return (
+               sales_units
+               * weighted_average_cost
+           )
+
+    def calculate_inventory_value(
+           self,
+           ending_inventory_units: int,
+           weighted_average_cost: float
+       ) -> float:
             return (
-                sales_units
-                * weighted_average_cost
-            )
-
-        def calculate_inventory_value(
-            self,
-            ending_inventory_units: int,
-            weighted_average_cost: float
-        ) -> float:
-
-            return (
-                ending_inventory_units
-                * weighted_average_cost
-            )
+               ending_inventory_units
+               * weighted_average_cost
+           )
