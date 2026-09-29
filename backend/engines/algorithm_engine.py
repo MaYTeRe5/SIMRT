@@ -10,6 +10,10 @@ from domain.balance_sheet_result import (
     BalanceSheetResult
 )
 
+from domain.cash_flow_result import (
+    CashFlowResult
+)
+
 
 class AlgorithmEngine:
 
@@ -385,4 +389,36 @@ class AlgorithmEngine:
         return (
             net_profit
             + depreciation
+        )
+
+    def build_cash_flow_result(
+        self,
+        company_id: str,
+
+        operating_cash_flow: float,
+
+        investing_cash_flow: float,
+
+        financing_cash_flow: float
+    ) -> CashFlowResult:
+
+        ending_cash = (
+            operating_cash_flow
+            + investing_cash_flow
+            + financing_cash_flow
+        )
+
+        return CashFlowResult(
+            company_id=company_id,
+
+            operating_cash_flow=
+                operating_cash_flow,
+
+            investing_cash_flow=
+                investing_cash_flow,
+
+            financing_cash_flow=
+                financing_cash_flow,
+
+            ending_cash=ending_cash
         )
