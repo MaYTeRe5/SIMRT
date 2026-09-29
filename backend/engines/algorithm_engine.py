@@ -168,3 +168,14 @@ class AlgorithmEngine:
             gross_profit
             - operating_expense
         )
+
+    def calculate_ebit(
+        self,
+        ebitda: float,
+        depreciation: float
+    ) -> float:
+
+        return (
+            ebitda
+            - depreciation
+        )
