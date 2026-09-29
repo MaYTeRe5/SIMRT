@@ -179,3 +179,16 @@ class AlgorithmEngine:
             ebitda
             - depreciation
         )
+
+    def calculate_profit_before_tax(
+        self,
+        ebit: float,
+        interest_income: float,
+        interest_expense: float
+    ) -> float:
+
+        return (
+            ebit
+            + interest_income
+            - interest_expense
+        )
