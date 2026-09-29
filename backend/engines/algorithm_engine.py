@@ -192,3 +192,28 @@ class AlgorithmEngine:
             + interest_income
             - interest_expense
         )
+
+    def calculate_tax_expense(
+        self,
+        profit_before_tax: float,
+        tax_rate: float
+    ) -> float:
+
+        if profit_before_tax <= 0:
+            return 0.0
+
+        return (
+            profit_before_tax
+            * tax_rate
+        )
+
+    def calculate_net_profit(
+        self,
+        profit_before_tax: float,
+        tax_expense: float
+    ) -> float:
+
+        return (
+            profit_before_tax
+            - tax_expense
+        )
