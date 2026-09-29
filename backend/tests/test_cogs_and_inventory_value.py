@@ -20,13 +20,17 @@ sales_units = 180000
 ending_inventory_units = 120000
 
 cogs = (
-    sales_units
-    * weighted_average_cost
+    engine.calculate_cogs(
+        sales_units,
+        weighted_average_cost
+    )
 )
 
 inventory_value = (
-    ending_inventory_units
-    * weighted_average_cost
+    engine.calculate_inventory_value(
+        ending_inventory_units,
+        weighted_average_cost
+    )
 )
 
 print("Weighted Average Cost")
