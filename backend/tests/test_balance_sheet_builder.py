@@ -40,4 +40,3 @@ print(
         + result.equity
     )
 )
-``
