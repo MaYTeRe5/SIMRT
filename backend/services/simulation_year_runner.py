@@ -52,8 +52,7 @@ class SimulationYearRunner:
         print()
 
         print(
-            f"Running Simulation "
-            f"{simulation_id}"
+            f"Running Simulation {simulation_id}"
         )
 
         print(
