@@ -1,3 +1,8 @@
+from domain.kpi_result import (
+    KPIResult
+)
+
+
 class KPIEngine:
 
     def calculate_roe(
