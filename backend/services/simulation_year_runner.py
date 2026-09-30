@@ -6,8 +6,16 @@ from engines.market_engine import (
     MarketEngine
 )
 
+from engines.demand_redistribution_engine import (
+    DemandRedistributionEngine
+)
+
 from engines.algorithm_engine import (
     AlgorithmEngine
+)
+
+from engines.kpi_engine import (
+    KPIEngine
 )
 
 
@@ -23,8 +31,16 @@ class SimulationYearRunner:
             MarketEngine()
         )
 
+        self.demand_redistribution_engine = (
+            DemandRedistributionEngine()
+        )
+
         self.algorithm_engine = (
             AlgorithmEngine()
+        )
+
+        self.kpi_engine = (
+            KPIEngine()
         )
 
     def run_year(
@@ -55,7 +71,15 @@ class SimulationYearRunner:
         )
 
         print(
-            "3. Algorithm Engine"
+            "3. Demand Redistribution Engine"
+        )
+
+        print(
+            "4. Algorithm Engine"
+        )
+
+        print(
+            "5. KPI Engine"
         )
 
         print()
