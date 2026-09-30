@@ -1,21 +1,524 @@
 # SIMRT Project Context
 
-## Project Purpose
+## Project Name
 
-## Current Architecture
+SIMRT
 
-## Confirmed Business Rules
+Strategic Integrated Management & Results Tournament
 
-## Engine Execution Order
+---
 
-## Completed Components
+# Project Purpose
 
-## Current Development Step
+SIMRT, Capsim ve Cesim benzeri bir işletme yönetim simülasyonudur.
 
-## Next Planned Step
+Katılımcılar ekipler halinde şirket yönetim kurulu rolünü üstlenir.
 
-## Open Questions
+Her ekip bir şirketi yönetir.
 
-## Known Technical Debt
+Amaç:
 
-## Source of Truth and Working Method
+- Pazar payı yaratmak
+- Karlılık sağlamak
+- Nakit yönetmek
+- Şirket değerini artırmak
+
+Nihai başarı ölçümü TOPSIS tabanlı Ranking Engine ile yapılır.
+
+---
+
+# Source of Truth
+
+GitHub repository proje için tek gerçek kaynaktır.
+
+```text
+GitHub
+=
+Source of Truth
+```
+
+Replit yalnızca:
+
+```text
+Development
+Testing
+Execution
+```
+
+ortamıdır.
+
+---
+
+# Working Method
+
+Kod geliştirme süreci:
+
+```text
+1. GitHub'da değişiklik yapılır
+
+2. Commit edilir
+
+3. Replit güncellenir
+
+git fetch origin
+git reset --hard origin/main
+
+4. Test çalıştırılır
+
+5. Sonuç doğrulanır
+```
+
+---
+
+# Confirmed Business Rules
+
+## Company Structure
+
+Tüm şirketler eşit başlar.
+
+Başlangıç verileri:
+
+```text
+Starting Point
+```
+
+sheetinden gelir.
+
+---
+
+## Market Structure
+
+Segmentler:
+
+- Value
+- Balanced
+- Premium
+
+---
+
+## TOPSIS Inputs
+
+Kriterler:
+
+- Price
+- Brand Score
+- Innovation Score
+- Credit Terms
+
+---
+
+## Criterion Types
+
+### Cost Criterion
+
+```text
+Price
+```
+
+---
+
+### Benefit Criteria
+
+```text
+Brand Score
+
+Innovation Score
+
+Credit Terms
+```
+
+---
+
+## Brand Loyalty
+
+Brand Loyalty Rate senaryo tarafından belirlenir.
+
+Brand Loyalty Demand:
+
+```text
+Current Market Volume
+×
+Brand Loyalty Rate
+```
+
+---
+
+## Brand Loyalty Distribution
+
+Tüm aktif şirketlere eşit dağıtılır.
+
+---
+
+## Brand Loyalty Price Rule
+
+Şirket fiyatı:
+
+```text
+Average Market Price
+×
+Brand Loyalty Price Limit
+```
+
+eşik değerini aşarsa:
+
+```text
+Brand Loyalty Demand = 0
+```
+
+olur.
+
+---
+
+## Lost Loyalty Rule
+
+Kaybedilen sadakat talebi diğer şirketlere verilmez.
+
+TOPSIS havuzuna geri döner.
+
+---
+
+## Redistribution Rule
+
+Karşılanamayan talebin tamamı yeniden dağıtıma çıkar.
+
+---
+
+## Eligible Company Rule
+
+Sadece:
+
+```text
+remaining_supply > 0
+```
+
+olan şirketler yeniden dağıtıma katılır.
+
+---
+
+## Redistribution Score
+
+```text
+Value Score
++
+Balanced Score
++
+Premium Score
+```
+
+toplamıdır.
+
+---
+
+## Redistribution Score Total
+
+Sadece uygun şirketlerin skorları kullanılır.
+
+---
+
+## Redistribution Round Count
+
+Maksimum:
+
+```text
+2 redistribution round
+```
+
+uygulanır.
+
+---
+
+## Lost Demand
+
+Round 2 sonrasında hala karşılanamayan talep varsa:
+
+```text
+Lost Demand
+```
+
+olarak kaybolur.
+
+Satışa dönüşmez.
+
+---
+
+# Finance Rules
+
+## Inventory Valuation
+
+```text
+Weighted Average Cost
+```
+
+kullanılır.
+
+---
+
+## Product R&D
+
+Muhasebe sınıfı:
+
+```text
+OPEX
+```
+
+TOPSIS etkisi:
+
+```text
+Innovation Score
+```
+
+---
+
+## Process R&D
+
+Muhasebe sınıfı:
+
+```text
+CAPEX
+```
+
+etkisi:
+
+```text
+Efficiency Score
+↓
+Unit Cost Reduction
+```
+
+---
+
+## Capacity Investment
+
+Muhasebe sınıfı:
+
+```text
+CAPEX
+```
+
+---
+
+## Depreciation
+
+Tüm CAPEX kalemleri:
+
+- Capacity Investment
+- Process R&D
+- Starting Point Fixed Assets
+
+için:
+
+```text
+10 Year Straight Line
+```
+
+uygulanır.
+
+---
+
+## Minimum Cash Requirement
+
+Şu anki varsayılan değer:
+
+```text
+250.000 TL
+```
+
+Ancak bu:
+
+```text
+Variable List
+```
+
+tarafından yönetilecek.
+
+Admin tarafından değiştirilebilir.
+
+---
+
+## Tax
+
+Current Version:
+
+```text
+Tax Rate = 0%
+```
+
+---
+
+## Loss Carry Forward
+
+Desteklenir.
+
+---
+
+# Current Architecture
+
+```text
+Decision
+↓
+State Update Engine
+↓
+Market Engine
+↓
+Algorithm Engine
+↓
+Financial Engine
+↓
+KPI Engine
+↓
+Ranking Engine
+```
+
+---
+
+# Current Development Status
+
+## Completed
+
+### StateUpdateEngine
+
+✅
+
+### MarketEngine
+
+✅
+
+### Brand Loyalty
+
+✅
+
+### TOPSIS Core
+
+✅
+
+### Segment TOPSIS Score
+
+✅
+
+### Segment Demand Allocation
+
+✅
+
+### Demand Aggregation
+
+✅
+
+### Unmet Demand Pool
+
+✅
+
+### Redistribution Round 1
+
+✅
+
+### Apply Redistribution
+
+✅
+
+### Redistribution Round 2
+
+✅
+
+### Lost Demand
+
+✅
+
+### Weighted Average Cost
+
+✅
+
+### COGS
+
+✅
+
+### Inventory Value
+
+✅
+
+### Operating Expense
+
+✅
+
+### EBITDA
+
+✅
+
+### EBIT
+
+✅
+
+### Profit Before Tax
+
+✅
+
+### Net Profit
+
+✅
+
+### FinancialResult
+
+✅
+
+### BalanceSheetResult
+
+✅
+
+### CashFlowResult Model
+
+✅
+
+---
+
+# Next Step
+
+Current Priority:
+
+```text
+Cash Flow Engine
+↓
+Balance Sheet Builder
+↓
+KPI Engine
+↓
+Ranking Engine
+```
+
+---
+
+# Future Features
+
+Planned:
+
+- Industry PR
+- Market Insight Purchase
+- ESG Module
+- Carbon Tax
+- AI Investments
+- Export Markets
+- M&A
+
+---
+
+# Guiding Principle
+
+Whenever there is a conflict between:
+
+```text
+Academic Theory
+vs
+Excel Engine
+```
+
+use:
+
+```text
+Excel Rule Wins
+```
+
+Goal:
+
+```text
+Excel Result
+=
+Python Result
+```
