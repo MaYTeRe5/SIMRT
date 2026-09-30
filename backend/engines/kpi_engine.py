@@ -46,3 +46,57 @@ class KPIEngine:
             cogs
             / average_inventory
         )
+
+    def build_kpi_result(
+        self,
+        company_id: str,
+
+        market_share: float,
+
+        ebitda: float,
+
+        net_profit: float,
+
+        equity: float,
+
+        debt: float,
+
+        total_assets: float,
+
+        average_inventory: float,
+
+        cogs: float
+    ):
+
+        roe = self.calculate_roe(
+            net_profit,
+            equity
+        )
+
+        debt_asset_ratio = (
+            self.calculate_debt_asset_ratio(
+                debt,
+                total_assets
+            )
+        )
+
+        inventory_turn = (
+            self.calculate_inventory_turn(
+                cogs,
+                average_inventory
+            )
+        )
+
+        return KPIResult(
+            company_id=company_id,
+
+            market_share=market_share,
+
+            ebitda=ebitda,
+
+            roe=roe,
+
+            debt_asset_ratio=debt_asset_ratio,
+
+            inventory_turn=inventory_turn
+        )
