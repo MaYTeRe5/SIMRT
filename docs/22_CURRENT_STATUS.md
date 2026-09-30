@@ -1,36 +1,173 @@
 # SIMRT Current Status
 
-## Last Confirmed Test
+## Project Status
 
-Cash Flow Result
+Current Phase:
 
-## Last Passing Command
+```text
+Engine Development
+```
 
-PYTHONPATH=backend python backend/tests/test_build_cash_flow.py
+Repository:
 
-## Current Work
+```text
+GitHub = Source of Truth
 
-Treasury and liquidity loop design
+Replit = Execution Environment
+```
 
-## Next Step
+---
 
-Implement TreasuryEngine or solve_liquidity()
+# Completed Components
 
-## Completed Engines
+## Domain Models
 
-- StateUpdateEngine
-- MarketEngine
-- TopsisEngine
-- SegmentDemandAllocationEngine
-- DemandRedistributionEngine
-- AlgorithmEngine, partial
+✅ Simulation
 
-## Important Confirmed Rules
+✅ Team
 
-- GitHub is the source of truth.
-- Replit is reset from origin/main before tests.
-- Redistribution runs for a maximum of two additional rounds.
-- Only companies with remaining supply participate.
-- Round 2 remaining demand is lost.
-- Inventory valuation uses weighted average cost.
-- Minimum cash requirement is an admin variable.
+✅ Player
+
+✅ Advisor
+
+✅ Company
+
+✅ CompanyState
+
+✅ StartingPoint
+
+✅ Scenario
+
+✅ Segment
+
+✅ SegmentPreference
+
+✅ Decision
+
+✅ MarketResult
+
+✅ CompanySegmentDemand
+
+✅ CompanyTotalDemand
+
+✅ CompanyAvailableSupply
+
+✅ CompanyRedistributionScore
+
+✅ RedistributionAllocation
+
+✅ RedistributionRoundResult
+
+✅ AlgorithmResult
+
+✅ FinancialResult
+
+✅ BalanceSheetResult
+
+✅ CashFlowResult
+
+---
+
+## Market Engine
+
+### State Update
+
+✅ Brand Score
+
+✅ Innovation Score
+
+✅ Efficiency Score
+
+---
+
+### Brand Loyalty
+
+✅ Brand Loyalty Pool
+
+✅ Price Threshold
+
+✅ Lost Loyalty Demand
+
+✅ Lost Loyalty Recovery
+
+---
+
+### TOPSIS
+
+✅ Normalization
+
+✅ Positive Ideal Solution
+
+✅ Negative Ideal Solution
+
+✅ Difference Calculation
+
+✅ Weight Application
+
+✅ Distance Calculation
+
+✅ Relative Closeness
+
+✅ Segment TOPSIS Score
+
+---
+
+### Demand Generation
+
+✅ Segment Demand Allocation
+
+✅ Company Total Demand
+
+---
+
+### Redistribution
+
+✅ Unmet Demand Pool
+
+✅ Redistribution Round 1
+
+✅ Apply Redistribution
+
+✅ Redistribution Round 2
+
+✅ Lost Demand
+
+---
+
+## Algorithm Engine
+
+✅ Weighted Average Cost
+
+✅ Revenue
+
+✅ COGS
+
+✅ Ending Inventory Value
+
+✅ Gross Profit
+
+✅ Operating Expense
+
+✅ EBITDA
+
+✅ EBIT
+
+✅ Profit Before Tax
+
+✅ Net Profit
+
+---
+
+## Financial Engine
+
+✅ FinancialResult
+
+✅ BalanceSheetResult
+
+✅ CashFlowResult (Model)
+
+---
+
+# Confirmed Business Rules
+
+## Inventory Valuation
