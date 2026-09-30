@@ -1,21 +1,26 @@
-from engines.kpi_engine import KPIEngine
-
+from engines.kpi_engine import (
+    KPIEngine
+)
 
 engine = KPIEngine()
 
 roe = engine.calculate_roe(
     net_profit=4810000,
-    equity=24810000
+    equity=20100000
 )
 
-debt_asset = engine.calculate_debt_asset_ratio(
-    debt=3000000,
-    total_assets=24300000
+debt_asset = (
+    engine.calculate_debt_asset_ratio(
+        debt=3000000,
+        total_assets=24300000
+    )
 )
 
-inventory_turn = engine.calculate_inventory_turn(
-    cogs=10200000,
-    average_inventory=5900000
+inventory_turn = (
+    engine.calculate_inventory_turn(
+        cogs=10800000,
+        average_inventory=5900000
+    )
 )
 
 print("ROE")
