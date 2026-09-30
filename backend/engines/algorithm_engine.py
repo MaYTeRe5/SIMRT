@@ -422,3 +422,27 @@ class AlgorithmEngine:
 
             ending_cash=ending_cash
         )
+
+    def calculate_receivables(
+        self,
+        revenue: float,
+        ar_days: int
+    ) -> float:
+
+        return (
+            revenue
+            * ar_days
+            / 365
+        )
+
+    def calculate_payables(
+        self,
+        purchases: float,
+        ap_days: int
+    ) -> float:
+
+        return (
+            purchases
+            * ap_days
+            / 365
+        )
