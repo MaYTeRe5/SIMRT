@@ -149,4 +149,5 @@ class TreasuryEngine:
         if maximum_iterations <= 0:
             raise ValueError(
                 "Maximum iterations must be greater "
+            )
                 
