@@ -371,105 +371,68 @@ Ranking Engine
 
 ---
 
-# Current Development Status
+## Architecture Rules
 
-## Completed
+### Dependency Direction
 
-### StateUpdateEngine
+Allowed:
 
-✅
+Engine → Domain
+Service → Engine
+Service → Domain
 
-### MarketEngine
+Forbidden:
 
-✅
+Domain → Engine
+Domain → Service
 
-### Brand Loyalty
+### Validation Rule
 
-✅
+A feature is NOT considered completed unless:
 
-### TOPSIS Core
+- implemented
+- committed
+- tested
+- verified
 
-✅
+### Documentation Rule
 
-### Segment TOPSIS Score
+Architectural decisions must be documented through ADRs.
 
-✅
+### Source of Truth Rule
 
-### Segment Demand Allocation
+GitHub is the single source of truth.
 
-✅
+If there is a conflict between:
 
-### Demand Aggregation
+- conversation
+- AI memory
+- Replit
+- documentation
 
-✅
+GitHub repository takes priority.
 
-### Unmet Demand Pool
+### Excel Validation Rule
 
-✅
+Excel Rule Wins.
 
-### Redistribution Round 1
+Whenever a difference exists between:
 
-✅
+- academic theory
+- software convention
+- Excel calculation
 
-### Apply Redistribution
+validated Excel behavior wins.
 
-✅
+### Balance Sheet Rule
 
-### Redistribution Round 2
+Every completed company-year calculation must satisfy:
 
-✅
+Assets = Liabilities + Equity
 
-### Lost Demand
+### Configuration Rule
 
-✅
-
-### Weighted Average Cost
-
-✅
-
-### COGS
-
-✅
-
-### Inventory Value
-
-✅
-
-### Operating Expense
-
-✅
-
-### EBITDA
-
-✅
-
-### EBIT
-
-✅
-
-### Profit Before Tax
-
-✅
-
-### Net Profit
-
-✅
-
-### FinancialResult
-
-✅
-
-### BalanceSheetResult
-
-✅
-
-### CashFlowResult Model
-
-✅
-
----
-
-# Next Step
+Scenario-dependent values should eventually be controlled by Variable List rather than hard-coded values.
 
 Current Priority:
 
