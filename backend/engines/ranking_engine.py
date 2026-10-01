@@ -292,7 +292,7 @@ class RankingEngine:
         sorted_scores: list[dict]
     ) -> list[RankingResult]:
 
-    ranking_results = []
+        ranking_results = []
 
         previous_score = None
         previous_rank = 0
