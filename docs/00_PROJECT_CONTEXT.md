@@ -434,6 +434,26 @@ Assets = Liabilities + Equity
 
 Scenario-dependent values should eventually be controlled by Variable List rather than hard-coded values.
 
+## AI Onboarding Protocol
+
+Read order:
+
+1. 00_PROJECT_CONTEXT.md
+2. 22_CURRENT_STATUS.md
+3. ADR documents
+4. AI Worklog
+5. Relevant engines and tests
+
+Never assume:
+
+- code exists
+- tests passed
+- feature completed
+
+unless explicitly verified.
+
+GitHub repository and passing tests have priority over conversations and AI-generated documents.
+
 Current Priority:
 
 ```text
