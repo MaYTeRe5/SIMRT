@@ -1,173 +1,278 @@
 # SIMRT Current Status
 
-## Project Status
+Last Updated:
+2026-10-01
 
-Current Phase:
+Current Milestone:
+Core Simulation Integration
 
-```text
-Engine Development
-```
+Project Status:
+🟡 In Progress
 
 Repository:
-
-```text
 GitHub = Source of Truth
 
-Replit = Execution Environment
-```
+Execution Environment:
+Replit
 
----
+--------------------------------------------------
+EXECUTIVE SUMMARY
+--------------------------------------------------
 
-# Completed Components
+SIMRT core calculation engines have been developed and individually validated through dedicated tests.
 
-## Domain Models
+The project has successfully implemented:
 
-✅ Simulation
+- State Update
+- Market Generation
+- Brand Loyalty
+- TOPSIS
+- Demand Redistribution
+- Core Financial Calculations
+- Treasury Prototype
+- KPI Calculations
 
-✅ Team
+The primary remaining objective is integrating these validated components into a complete end-to-end annual simulation process.
 
-✅ Player
+The project is currently transitioning from:
 
-✅ Advisor
+Engine Validation
 
-✅ Company
+to
 
-✅ CompanyState
+System Integration
 
-✅ StartingPoint
+--------------------------------------------------
+VERIFIED COMPLETED CAPABILITIES
+--------------------------------------------------
 
-✅ Scenario
+### State Update Engine
 
-✅ Segment
+Status:
+✅ Verified
 
-✅ SegmentPreference
+Capabilities:
 
-✅ Decision
+- Brand Score
+- Innovation Score
+- Efficiency Score
 
-✅ MarketResult
+### Market Engine
 
-✅ CompanySegmentDemand
+Status:
+✅ Verified
 
-✅ CompanyTotalDemand
+Capabilities:
 
-✅ CompanyAvailableSupply
+- Market Volume Growth
+- Brand Loyalty Pool
+- Price Threshold
+- Lost Loyalty Logic
+- TOPSIS Allocation
+- Segment Demand Allocation
 
-✅ CompanyRedistributionScore
+### Demand Redistribution
 
-✅ RedistributionAllocation
+Status:
+✅ Verified
 
-✅ RedistributionRoundResult
+Capabilities:
 
-✅ AlgorithmResult
+- Unmet Demand Pool
+- Redistribution Round 1
+- Redistribution Round 2
+- Lost Demand
 
-✅ FinancialResult
+### Financial Core
 
-✅ BalanceSheetResult
+Status:
+✅ Verified
 
-✅ CashFlowResult
+Capabilities:
 
----
+- Weighted Average Cost
+- Revenue
+- COGS
+- Ending Inventory Value
+- Gross Profit
+- Operating Expenses
+- EBITDA
+- EBIT
+- Profit Before Tax
+- Net Profit
 
-## Market Engine
+### Financial Statements
 
-### State Update
+Status:
+✅ Partially Verified
 
-✅ Brand Score
+Capabilities:
 
-✅ Innovation Score
+- FinancialResult
+- BalanceSheetResult
+- CashFlowResult Model
 
-✅ Efficiency Score
+Limitations:
 
----
+- Full end-to-end statement integration not yet completed
 
-### Brand Loyalty
+### Treasury Engine
 
-✅ Brand Loyalty Pool
+Status:
+🟡 Working Prototype
 
-✅ Price Threshold
+Capabilities:
 
-✅ Lost Loyalty Demand
+- Minimum Cash Requirement
+- Required Borrowing
+- Deposit Logic
+- Interest Calculation
+- Iterative Solver
 
-✅ Lost Loyalty Recovery
+Limitations:
 
----
+- Financial integration incomplete
+- Assertion tolerance requires review
 
-### TOPSIS
+### KPI Engine
 
-✅ Normalization
+Status:
+✅ Verified
 
-✅ Positive Ideal Solution
+Capabilities:
 
-✅ Negative Ideal Solution
+- ROE
+- Debt / Asset
+- Inventory Turn
 
-✅ Difference Calculation
+### Ranking Engine
 
-✅ Weight Application
+Status:
+⚪ Not Complete
 
-✅ Distance Calculation
+Completed:
 
-✅ Relative Closeness
+- Ranking Domain Models
+- RankingTopsisRowBuilder
 
-✅ Segment TOPSIS Score
+Missing:
 
----
+- RankingTopsisMatrixBuilder
+- Ranking Score Calculation
+- Ranking Sort Logic
+- Rank Assignment
 
-### Demand Generation
+### SimulationYearRunner
 
-✅ Segment Demand Allocation
+Status:
+🟡 Skeleton
 
-✅ Company Total Demand
+Completed:
 
----
+- Execution sequence
+- Integration scaffold
+- Basic orchestration test
 
-### Redistribution
+Missing:
 
-✅ Unmet Demand Pool
+- Real data flow
+- Engine integration
+- End-to-end year close
 
-✅ Redistribution Round 1
+--------------------------------------------------
+CURRENTLY IN PROGRESS
+--------------------------------------------------
 
-✅ Apply Redistribution
+1. Ranking Engine Completion
 
-✅ Redistribution Round 2
+2. SimulationYearRunner Integration
 
-✅ Lost Demand
+3. End-to-End Annual Close
 
----
+--------------------------------------------------
+KNOWN BLOCKERS
+--------------------------------------------------
 
-## Algorithm Engine
+1. Treasury integration into final statements
 
-✅ Weighted Average Cost
+2. YearRunner real orchestration
 
-✅ Revenue
+3. Full financial statement integration
 
-✅ COGS
+--------------------------------------------------
+TECHNICAL DEBT
+--------------------------------------------------
 
-✅ Ending Inventory Value
+High Priority
 
-✅ Gross Profit
+- SimulationYearRunner is still a skeleton
+- Treasury assertion tolerance issue
+- No automated pytest suite
 
-✅ Operating Expense
+Medium Priority
 
-✅ EBITDA
+- Variable List implementation
+- Algorithm engine decomposition
+- Rounding policy standardization
 
-✅ EBIT
+Low Priority
 
-✅ Profit Before Tax
+- Type annotation cleanup
+- CI/CD implementation
 
-✅ Net Profit
+--------------------------------------------------
+CURRENT PRIORITY
+--------------------------------------------------
 
----
+Primary Goal:
 
-## Financial Engine
+Complete Ranking Engine and begin real SimulationYearRunner integration.
 
-✅ FinancialResult
+Acceptance Criteria:
 
-✅ BalanceSheetResult
+- RankingResult generated
+- Ranking scores calculated via TOPSIS
+- Companies ranked automatically
+- Integrated into annual execution flow
 
-✅ CashFlowResult (Model)
+--------------------------------------------------
+NEXT MILESTONE
+--------------------------------------------------
 
----
+Milestone:
 
-# Confirmed Business Rules
+End-to-End Annual Company Simulation
 
-## Inventory Valuation
+Success Definition:
+
+Starting Point
+→ Decisions
+→ Market
+→ Redistribution
+→ Financial Results
+→ Treasury
+→ KPI
+→ Ranking
+
+generated automatically for one company and one simulation year.
+
+--------------------------------------------------
+RISK REGISTER
+--------------------------------------------------
+
+High
+
+- Excel / Python mismatch
+- Treasury calculation loop
+- Incomplete orchestration
+
+Medium
+
+- Variable List not implemented
+- Ranking flexibility not finalized
+
+Low
+
+- Documentation drift
+
+-----
