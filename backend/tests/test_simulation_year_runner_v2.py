@@ -19,4 +19,3 @@ print(type(result))
 print()
 
 print(result)
-`
