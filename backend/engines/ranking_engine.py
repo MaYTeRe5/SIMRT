@@ -23,7 +23,8 @@ class RankingEngine:
         self,
         kpi_results: list[KPIResult],
         weights: dict[str, float]
-    ) -> listif not kpi_results:
+    ) -> list[RankingResult]:
+        if not kpi_results:
             return []
 
         prepared_weights = self._prepare_weights(
@@ -195,7 +196,7 @@ class RankingEngine:
                 )
             )
 
-            ranking_score = (
+            _score = (
                 self.topsis_engine
                 .calculate_relative_closeness(
                     positive_distance,
@@ -206,7 +207,7 @@ class RankingEngine:
             company_scores.append(
                 {
                     "company_id": row.company_id,
-                    "ranking_score": ranking_score
+                    "_score": ranking_score
                 }
             )
 
@@ -289,7 +290,9 @@ class RankingEngine:
     def _assign_ranks(
         self,
         sorted_scores: list[dict]
-    ) -> listranking_results = []
+    ) -> list[RankingResult]:
+
+    ranking_results = []
 
         previous_score = None
         previous_rank = 0
