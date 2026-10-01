@@ -1,12 +1,15 @@
+from dataclasses import dataclass
+
+
 @dataclass
 class YearCloseResult:
 
-    state_update_results
+    financial_results: list
 
-    market_results
+    balance_sheet_results: list
 
-    financial_results
+    cash_flow_results: list
 
-    kpi_results
+    kpi_results: list
 
-    ranking_results
+    ranking_results: list
