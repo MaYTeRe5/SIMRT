@@ -32,9 +32,7 @@ Nihai başarı ölçümü TOPSIS tabanlı Ranking Engine ile yapılır.
 GitHub repository proje için tek gerçek kaynaktır.
 
 ```text
-GitHub
-=
-Source of Truth
+GitHub = Source of Truth
 ```
 
 Replit yalnızca:
@@ -353,7 +351,7 @@ Desteklenir.
 
 ## Target Annual Execution Flow
 
-```text
+
 Starting Point / Previous Company State
 ↓
 Decision + Scenario + Variable List
@@ -379,7 +377,7 @@ Ranking Engine
 Persist New Company State
 ↓
 Publish Results
-```
+
 
 The Algorithm layer is divided into pre-market and post-market phases.
 The pre-market phase prepares:
@@ -498,6 +496,8 @@ Excel Result
 =
 Python Result
 ```
+
+
 ## AI Onboarding Protocol 
 Before contributing to SIMRT, an AI assistant or developer must review the project in the following order: 
 1. `docs/00_PROJECT_CONTEXT.md`
