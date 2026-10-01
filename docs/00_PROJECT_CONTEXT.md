@@ -351,23 +351,20 @@ Desteklenir.
 
 ---
 
-# Current Architecture
+## Target Annual Execution Flow
+The Algorithm layer is divided into pre-market and post-market phases.
+The pre-market phase prepares:
+Available capacity
+Actual production
+Available product
+Cost preparation
+The post-market phase calculates:
+Final sales
+Ending inventory
+Revenue
+COGS
+Gross profit
 
-```text
-Decision
-↓
-State Update Engine
-↓
-Market Engine
-↓
-Algorithm Engine
-↓
-Financial Engine
-↓
-KPI Engine
-↓
-Ranking Engine
-```
 
 ---
 
