@@ -10,13 +10,8 @@ from engines.topsis_engine import TopsisEngine
 class RankingEngine:
 
     def __init__(self):
-        self.matrix_builder = (
-            RankingTopsisMatrixBuilder()
-        )
-
-        self.topsis_engine = (
-            TopsisEngine()
-        )
+        self.matrix_builder = RankingTopsisMatrixBuilder()
+        self.topsis_engine = TopsisEngine()
 
     def rank(
         self,
@@ -152,4 +147,159 @@ class RankingEngine:
                     )
                 )
 
-                weighted_negative_difference =
+                weighted_negative_difference = (
+                    self.topsis_engine.apply_weight(
+                        negative_difference,
+                        prepared_weights[
+                            criterion_name
+                        ]
+                    )
+                )
+
+                weighted_positive_differences.append(
+                    weighted_positive_difference
+                )
+
+                weighted_negative_differences.append(
+                    weighted_negative_difference
+                )
+
+            positive_distance = (
+                self.topsis_engine.calculate_distance(
+                    weighted_positive_differences
+                )
+            )
+
+            negative_distance = (
+                self.topsis_engine.calculate_distance(
+                    weighted_negative_differences
+                )
+            )
+
+            ranking_score = (
+                self.topsis_engine
+                .calculate_relative_closeness(
+                    positive_distance,
+                    negative_distance
+                )
+            )
+
+            company_scores.append(
+                {
+                    "company_id": row.company_id,
+                    "ranking_score": ranking_score
+                }
+            )
+
+        sorted_scores = sorted(
+            company_scores,
+            key=lambda item: (
+                -item["ranking_score"],
+                item["company_id"]
+            )
+        )
+
+        return self._assign_ranks(
+            sorted_scores
+        )
+
+    def _prepare_weights(
+        self,
+        weights: dict[str, float]
+    ) -> dict[str, float]:
+
+        required_criteria = {
+            "market_share",
+            "ebitda",
+            "roe",
+            "debt_asset_ratio",
+            "inventory_turn"
+        }
+
+        provided_criteria = set(
+            weights.keys()
+        )
+
+        if provided_criteria != required_criteria:
+            missing = (
+                required_criteria
+                - provided_criteria
+            )
+
+            unexpected = (
+                provided_criteria
+                - required_criteria
+            )
+
+            raise ValueError(
+                f"Invalid ranking weights. "
+                f"Missing: {sorted(missing)}. "
+                f"Unexpected: {sorted(unexpected)}."
+            )
+
+        if any(
+            weight < 0
+            for weight in weights.values()
+        ):
+            raise ValueError(
+                "Ranking weights cannot be negative."
+            )
+
+        total_weight = sum(
+            weights.values()
+        )
+
+        if abs(total_weight - 100.0) < 0.000001:
+            return {
+                name: value / 100.0
+                for name, value in weights.items()
+            }
+
+        if abs(total_weight - 1.0) < 0.000001:
+            return weights.copy()
+
+        raise ValueError(
+            "Ranking weights must total "
+            "1.0 or 100.0."
+        )
+
+    def _assign_ranks(
+        self,
+        sorted_scores: list[dict]
+    ) -> listranking_results = []
+
+        previous_score = None
+        previous_rank = 0
+
+        for position, item in enumerate(
+            sorted_scores,
+            start=1
+        ):
+            current_score = item[
+                "ranking_score"
+            ]
+
+            if (
+                previous_score is not None
+                and abs(
+                    current_score
+                    - previous_score
+                ) <= 0.000000000001
+            ):
+                rank = previous_rank
+
+            else:
+                rank = position
+
+            ranking_results.append(
+                RankingResult(
+                    company_id=item["company_id"],
+                    ranking_score=current_score,
+                    rank=rank
+                )
+            )
+
+            previous_score = current_score
+            previous_rank = rank
+
+        return ranking_results
