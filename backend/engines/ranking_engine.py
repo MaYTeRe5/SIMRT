@@ -265,18 +265,17 @@ class RankingEngine:
 
     def _assign_ranks(
         self,
-        sorted_scores: list[dict]
-    ) -> list[RankingResult]:
-
+        sorted_scores
+    ):
         ranking_results = []
 
         previous_score = None
         previous_rank = 0
 
-        for position, item sorted_scores,
+        for position, item in enumerate(
+            sorted_scores,
             start=1
         ):
-
             current_score = item[
                 "ranking_score"
             ]
@@ -289,7 +288,6 @@ class RankingEngine:
                 ) <= 0.000000000001
             ):
                 rank = previous_rank
-
             else:
                 rank = position
 
@@ -303,6 +301,5 @@ class RankingEngine:
 
             previous_score = current_score
             previous_rank = rank
-
 
         return ranking_results
