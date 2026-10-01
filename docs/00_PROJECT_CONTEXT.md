@@ -454,19 +454,7 @@ unless explicitly verified.
 
 GitHub repository and passing tests have priority over conversations and AI-generated documents.
 
-Current Priority:
 
-```text
-Cash Flow Engine
-↓
-Balance Sheet Builder
-↓
-KPI Engine
-↓
-Ranking Engine
-```
-
----
 
 # Future Features
 
