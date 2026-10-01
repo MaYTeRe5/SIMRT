@@ -49,7 +49,8 @@ VERIFIED COMPLETED CAPABILITIES
 ### State Update Engine
 
 Status:
-✅ Verified
+✅ Implemented
+🟡 Script Validated
 
 Capabilities:
 
@@ -60,7 +61,8 @@ Capabilities:
 ### Market Engine
 
 Status:
-✅ Verified
+✅ Implemented
+🟡 Script Validated
 
 Capabilities:
 
@@ -74,7 +76,8 @@ Capabilities:
 ### Demand Redistribution
 
 Status:
-✅ Verified
+✅ Implemented
+✅ Assertion Validated
 
 Capabilities:
 
@@ -86,7 +89,8 @@ Capabilities:
 ### Financial Core
 
 Status:
-✅ Verified
+✅ Implemented
+🟡 Script Validated
 
 Capabilities:
 
@@ -119,7 +123,7 @@ Limitations:
 ### Treasury Engine
 
 Status:
-🟡 Working Prototype
+🟡 Prototype
 
 Capabilities:
 
@@ -137,7 +141,8 @@ Limitations:
 ### KPI Engine
 
 Status:
-✅ Verified
+✅ Implemented
+🟡 Script Validated
 
 Capabilities:
 
@@ -148,19 +153,18 @@ Capabilities:
 ### Ranking Engine
 
 Status:
-⚪ Not Complete
+⚪ Not Implemented
 
 Completed:
-
 - Ranking Domain Models
 - RankingTopsisRowBuilder
+- RankingTopsisMatrix Domain Object
 
 Missing:
-
-- RankingTopsisMatrixBuilder
-- Ranking Score Calculation
-- Ranking Sort Logic
-- Rank Assignment
+- RankingEngine implementation
+- TOPSIS ranking calculation
+- Sorting
+- Rank assignment
 
 ### SimulationYearRunner
 
