@@ -490,3 +490,45 @@ Excel Result
 =
 Python Result
 ```
+## AI Onboarding Protocol 
+Before contributing to SIMRT, an AI assistant or developer must review the project in the following order: 
+1. `docs/00_PROJECT_CONTEXT.md`
+2. `docs/22_CURRENT_STATUS.md`
+3. Relevant files under `docs/adr/`
+4. Recent entries in `docs/23_AI_WORKLOG.md`
+5. Relevant domain models
+6.  Relevant engine implementations
+7.  Relevant tests
+8.  Available Excel reconciliation evidence
+
+The assistant must never assume that: 
+- Proposed code was implemented
+- A suggested file was created
+- A change was committed to GitHub
+- A test was executed
+- A test passed
+- A feature was completed
+unless this has been explicitly verified.
+
+If sources conflict, use the following priority: 
+1. GitHub repository
+2. Passing test results
+3. Validated Excel results
+4. Current status documentation
+5. Worklog and ADR documents
+6. Conversations and AI-generated summaries
+
+Before recommending a new implementation step, identify: 
+- Goal
+- Relevant business rule
+- Affected files
+- Expected inputs
+- Expected outputs
+- Acceptance criteria
+- Required tests
+
+A feature is complete only when it is: 
+- Implemented
+- Committed
+- Tested
+- Verified
