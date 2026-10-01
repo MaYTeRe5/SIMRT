@@ -352,6 +352,35 @@ Desteklenir.
 ---
 
 ## Target Annual Execution Flow
+
+```text
+Starting Point / Previous Company State
+↓
+Decision + Scenario + Variable List
+↓
+State Update Engine
+↓
+Algorithm Pre-Market Phase
+↓
+Market Engine
+↓
+Demand Redistribution Engine
+↓
+Algorithm Post-Market Phase
+↓
+Financial Processing
+↓
+Treasury Processing
+↓
+KPI Engine
+↓
+Ranking Engine
+↓
+Persist New Company State
+↓
+Publish Results
+```
+
 The Algorithm layer is divided into pre-market and post-market phases.
 The pre-market phase prepares:
 Available capacity
