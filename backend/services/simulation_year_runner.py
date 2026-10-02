@@ -64,7 +64,8 @@ class SimulationYearRunner:
         print()
 
         print(
-            f"Running Simulation {simulation_id}"
+            f"Running Simulation "
+            f"{simulation_id}"
         )
 
         print(
@@ -90,15 +91,18 @@ class SimulationYearRunner:
         )
 
         result = YearCloseResult(
-            financial_results=financial_results,
+            financial_results=
+                financial_results,
 
             balance_sheet_results=[],
 
             cash_flow_results=[],
 
-            kpi_results=kpi_results,
+            kpi_results=
+                kpi_results,
 
-            ranking_results=ranking_results
+            ranking_results=
+                ranking_results
         )
 
         print()
